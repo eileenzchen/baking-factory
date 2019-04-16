@@ -33,5 +33,10 @@ class User < ApplicationRecord
 
   # Callbacks
   before_destroy :cannot_destroy_object
+
+  # login by username
+  def self.authenticate(username, password)
+    find_by_username(username).try(:authenticate, password)
+  end
   
 end
