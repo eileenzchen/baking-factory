@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
+  before_action :check_login
   before_action :set_order, only: [:show, :destroy]
+  authorize_resource
   
   def index
     @all_orders = Order.chronological.paginate(:page => params[:page]).per_page(10)
@@ -24,6 +26,10 @@ class OrdersController < ApplicationController
     end
   end
   
+  def destroy
+    @order.destroy
+    redirect_to orders_url, notice: "#{@order.name} was removed from the system."
+  end
 
   private
   def set_order

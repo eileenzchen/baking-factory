@@ -93,6 +93,11 @@ class UserTest < ActiveSupport::TestCase
       assert @mark.active
     end
 
+    should "allow user to authenticate with password" do
+      assert @mark.authenticate("secret")
+      deny @mark.authenticate("notsecret")
+    end
+
     should "have class method to handle authentication services" do
       assert User.authenticate('mark', 'secret')
       deny User.authenticate('mark', 'notsecret')
