@@ -72,6 +72,16 @@ class AddressTest < ActiveSupport::TestCase
 
     should "unset old billing address when new one set" do
       # confirm the current billing address
+      assert_equal @ryan_a1, @ryan.billing_address
+      # change the billing address to address 2
+      @ryan_a1.recipient = "Fred Flood"
+      @ryan_a1.save
+      # confirm that address is still billing
+      assert_equal @ryan_a1, @ryan.billing_address
+    end
+    
+    should "not unset is_billing field when other edits are made" do
+      # confirm the current billing address
       assert_equal @alexe_a1, @alexe.billing_address
       refute_equal @alexe_a2, @alexe.billing_address
       # change the billing address to address 2
