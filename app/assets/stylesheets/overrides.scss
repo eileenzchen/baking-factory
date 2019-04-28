@@ -7,7 +7,7 @@ html {
 }
 
 p {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 
@@ -98,8 +98,14 @@ nav .text-home {
 }
 
 /****CONTACT****/
-.contact-info p{
-  display: inline;
+.contact-img{
+  padding-top: 25px;
+  width: 100%;
+  height: auto;
+}
+
+.contact-content{
+  line-height: 8px;
 }
 
 /****LOGIN****/

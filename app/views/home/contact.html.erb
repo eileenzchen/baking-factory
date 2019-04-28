@@ -1,23 +1,30 @@
-<div id="main_content" class="row contact-info">
+<div id="main_content" class="row contact-content">
   <div class="col s8 push-s2">
     <h3 class="center-align"><b>Contact Us</b></h3>
-    <div class="divider"></div>
-    <h4>Hours</h4> 
-    <p>Mon - Fri: 8am - 5pm</p><br/>
-    <p>Sat - Sun: 10am - 4pm</p><br/>
-    <h4>Phone</h4> 
-    <p>(412) 333-4444</p><br/>
-    <h4>Email</h4> 
-    <p><b>General Inquiries</b></p>&nbsp&nbsp
-    <%= mail_to "mark.heimann@thebakingfactory.com", "mark.heimann@thebakingfactory.com", encode: "javascript" %>
-    
-    <br/><br/>
-    <p><b>New Account Inquiries</b></p>&nbsp&nbsp
-    <%= mail_to "alex.heimann@thebakingfactory.com", "alex.heimann@thebakingfactory.com", encode: "javascript" %>
-    
+		<div class="divider"></div>
 
+		<div class="row">
+		<div class="col s5">
+			<h5>Hours</h5> 
+			<p>Mon - Fri: 8am - 5pm</p>
+			<p>Sat - Sun: 10am - 4pm</p><br/>
+			<h5>Phone</h5> 
+			<p>(412) 333-4444</p><br/>
+			<h5>Email</h5> 
+			<p>General Inquiries</p>
+			<%= mail_to "mark.heimann@thebakingfactory.com", "mark.heimann@thebakingfactory.com", encode: "javascript" %></br>
+			
+			<br/>
+			<p>New Account Inquiries</p>
+			<%= mail_to "alex.heimann@thebakingfactory.com", "alex.heimann@thebakingfactory.com", encode: "javascript" %>
+		</div>
+
+		<div class="col s7">
+			<!--<a href="https://www.freepik.com/free-photos-vectors/food">Food photo created by freepik - www.freepik.com</a>-->
+			<%= image_tag 'contact-img.jpg', class:'contact-img' %>
+		</div>
+
+		</div> <!--end row-->
   </div>
-
-
 
 </div>
