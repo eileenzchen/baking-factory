@@ -1,28 +1,23 @@
-<div class="row">
-	<div class="small-7 columns">
-		<h2>Contact Bread Express</h2>
-		<p class="supertiny">&nbsp;</p>
-		<table cellpadding="3">
-			<tr>
-				<td>Webmaster:&nbsp;&nbsp;&nbsp;</td>
-				<td>Professor Larry Heimann</td>
-			</tr>
-			<tr>
-				<td>Email:</td>
-				<td>
-				<%= mail_to("profh@cmu.edu", "Klingon Code Warrior*", :encode => "javascript") %> 
-				</td>
-			</tr>
-			<tr>
-				<td>Phone:</td>
-				<td>412-268-8211</td>
-			</tr>
-		</table>
+<div id="main_content" class="row contact-info">
+  <div class="col s8 push-s2">
+    <h3 class="center-align"><b>Contact Us</b></h3>
+    <div class="divider"></div>
+    <h4>Hours</h4> 
+    <p>Mon - Fri: 8am - 5pm</p><br/>
+    <p>Sat - Sun: 10am - 4pm</p><br/>
+    <h4>Phone</h4> 
+    <p>(412) 333-4444</p><br/>
+    <h4>Email</h4> 
+    <p><b>General Inquiries</b></p>&nbsp&nbsp
+    <%= mail_to "mark.heimann@thebakingfactory.com", "mark.heimann@thebakingfactory.com", encode: "javascript" %>
+    
+    <br/><br/>
+    <p><b>New Account Inquiries</b></p>&nbsp&nbsp
+    <%= mail_to "alex.heimann@thebakingfactory.com", "alex.heimann@thebakingfactory.com", encode: "javascript" %>
+    
 
-		<p class="note"><br>*I am a professor of information systems at Carnegie Mellon University and this nickname was a little joke between myself and my students that I adopted as my signature for all my programming work.  
-			<br><br><em>... in truth I am only half-Klingon.</em></p>
-			
-			<p>&nbsp;</p>
-			<p>&nbsp;</p>
-	</div>
+  </div>
+
+
+
 </div>
