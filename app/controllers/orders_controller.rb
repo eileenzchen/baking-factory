@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   include AppHelpers::Cart
 
   before_action :check_login
-  before_action :set_order, only: [:show, :destroy]
+  before_action :set_order, only: [:show, :edit, :update, :destroy]
   authorize_resource
   
   def index
@@ -22,6 +22,9 @@ class OrdersController < ApplicationController
     @order = Order.new
   end
 
+  def edit
+  end
+
   def create
     @order = Order.new(order_params)
     @order.date = Date.current
@@ -30,6 +33,14 @@ class OrdersController < ApplicationController
       redirect_to @order, notice: "Thank you for ordering from the Baking Factory."
     else
       render action: 'new'
+    end
+  end
+
+  def update
+    if @order.update(item_params)
+      redirect_to @order, notice: "Your order was updated in the system."
+    else
+      render action: 'edit'
     end
   end
   

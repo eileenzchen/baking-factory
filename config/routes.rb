@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: :logout
 
   # Routes for main resources
+  get "customers/:id/dashboard", to: 'customers#dashboard', as: :customer_dashboard
+
   resources :addresses
   resources :customers
   resources :orders

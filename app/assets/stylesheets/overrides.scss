@@ -253,7 +253,7 @@ a {
  }
 
 /* label underline focus color */
- .row .controls input:focus, .materialize-textarea:focus:not([readonly]) {
+.controls input:focus, .materialize-textarea:focus:not([readonly]) {
   border-bottom: 1px solid #c49a5a !important;
   box-shadow: 0 1px 0 0 #c49a5a !important;
  }
