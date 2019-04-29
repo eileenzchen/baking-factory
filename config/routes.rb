@@ -15,7 +15,11 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: :logout
 
   # Routes for main resources
+  get "admin/dashboard", to: 'users#admin_dashboard', as: :admin_dashboard
   get "customers/:id/dashboard", to: 'customers#dashboard', as: :customer_dashboard
+  get "shipper/dashboard", to: 'users#shipper_dashboard', as: :shipper_dashboard
+  get "baker/dashboard", to: 'users#baker_dashboard', as: :baker_dashboard
+
 
   resources :addresses
   resources :customers
