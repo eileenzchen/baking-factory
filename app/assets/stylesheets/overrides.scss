@@ -17,7 +17,7 @@ nav {
   padding-top: 20px;
   padding-left: 20px;
   padding-right: 20px;
-  height: 150px;
+  height: 100px;
   border-bottom-color: fff;
 }
 
@@ -42,6 +42,15 @@ nav .text-home {
   padding-bottom: 22px;
   color: #644933;
 }
+
+nav p {
+  display: inline;
+}
+
+.cart-img {
+  padding-top: 5px;
+}
+
 
 
 /****HOME PAGE****/
@@ -121,7 +130,14 @@ nav .text-home {
 }
 
 .login-btn {
-  width: 100%
+  width: 100%;
+}
+
+.login-submit {
+  width: 100%;
+  background-color: #c49a5a;
+  color: #fff;
+  border-color: #c49a5a;
 }
 
 /****FOOTER****/

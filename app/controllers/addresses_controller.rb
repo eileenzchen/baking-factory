@@ -4,8 +4,14 @@ class AddressesController < ApplicationController
   authorize_resource
   
   def index
-    @active_addresses = Address.active.by_customer.by_recipient.paginate(:page => params[:page]).per_page(10)
-    @inactive_addresses = Address.inactive.by_customer.by_recipient.paginate(:page => params[:page]).per_page(10)
+    # get data on all addresses or addresses for a particular customer and paginate the output to 10 per page
+    if current_user.role?(:customer)
+      @active_addresses = current_user.owner.addresses.active.by_recipient.paginate(page: params[:page]).per_page(10)
+      @inactive_addresses = current_user.owner.addresses.inactive.by_recipient.paginate(page: params[:page]).per_page(10)
+    else
+      @active_addresses = Address.active.by_customer.by_recipient.paginate(:page => params[:page]).per_page(10)
+      @inactive_addresses = Address.inactive.by_customer.by_recipient.paginate(:page => params[:page]).per_page(10)
+
   end
 
   def show

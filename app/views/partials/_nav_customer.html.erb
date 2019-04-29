@@ -1,0 +1,28 @@
+<nav class="z-depth-0">
+  <div class="row nav-wrapper">
+    <div class="col s6 valign-wrapper">
+      <%= link_to image_tag('logos/logo-brown.png', :size => "40x40"), home_path  %>
+      <%= link_to 'The Baking Factory', home_path, :class => "text-home"  %>
+    </div>
+
+    <ul class="right hide-on-med-and-down">
+      <li><%= link_to 'MY ACCOUNT', customer_path(current_user.customer), :class => current_class?(customer_path(current_user.customer))  %></li>
+      <li><%= link_to 'MY ORDERS', orders_path, :class => current_class?(orders_path) %></li>
+    
+      <% if can? :create, Order %>
+
+        <!--LINK TO CORRECT CART PATH-->
+        <li><%= link_to image_tag('shopping-cart.png', :size => "25x25") + "  ( )", home_path, :class => "cart-img"  %></li>
+
+      <% end %>
+
+      <li><%= link_to 'LOGOUT', logout_path%></li>
+    </ul>
+    </hr>
+
+  
+  </div>
+  
+</nav>
+
+

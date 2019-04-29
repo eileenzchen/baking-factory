@@ -21,9 +21,9 @@ Rails.application.routes.draw do
   resources :items
 
   # Routes for order items and item prices
-  get 'order_items/new', to: 'order_items#new', as: :new_medicine_cost
-  get 'item_prices/new', to: 'item_prices#new', as: :new_procedure_cost
-  post 'order_items', to: 'order_items#create', as: :order_items
+  get 'cart', to: 'order_items#edit', as: :view_cart
+  # get 'checkout', to: 'order_items#create', as: :
+  get 'item_prices/new', to: 'item_prices#new', as: :new_item_price
   post 'item_prices', to: 'item_prices#create', as: :item_prices
   
   # Set the root url

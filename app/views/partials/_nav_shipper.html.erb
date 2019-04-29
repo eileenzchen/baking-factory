@@ -1,0 +1,25 @@
+<nav class="z-depth-0">
+  <div class="row nav-wrapper">
+    <div class="col s6 valign-wrapper">
+      <%= link_to image_tag('logos/logo-brown.png', :size => "40x40"), home_path  %>
+      <%= link_to 'The Baking Factory', home_path, :class => "text-home"  %>
+    </div>
+    
+    <ul class="right hide-on-med-and-down">
+      <% if can? :read, Address %>
+        <li><%= link_to 'ADDRESSES', addresses_path, :class => current_class?(addresses_path) %></li>
+      <% end %>
+      <% if can? :read, Item %>
+        <li><%= link_to 'ITEMS', items_path, :class => current_class?(items_path) %></li>
+      <% end %>
+      <% if can? :read, Order %>
+        <li><%= link_to 'ORDERS', orders_path, :class => current_class?(orders_path) %></li>
+      <% end %>
+      <li><%= link_to 'LOGOUT', logout_path%></li>
+    </ul>
+    </hr>
+
+  
+  </div>
+  
+</nav>

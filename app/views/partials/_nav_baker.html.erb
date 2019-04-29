@@ -6,15 +6,17 @@
     </div>
     
     <ul class="right hide-on-med-and-down">
-      <li><%= link_to 'HOME', home_path, :class => current_class?(home_path)  %></li>
-      <li><%= link_to 'ABOUT', about_path, :class => current_class?(about_path) %></li>
-      <li><%= link_to 'CONTACT', contact_path, :class => current_class?(contact_path) %></li>
-      <li><%= link_to 'LOGIN', login_path, :class => current_class?(login_path) %></li>
+      <% if can? :read, Item %>
+        <li><%= link_to 'ITEMS', items_path, :class => current_class?(items_path) %></li>
+      <% end %>
+      <% if can? :read, Order %>
+        <li><%= link_to 'ORDERS', orders_path, :class => current_class?(orders_path) %></li>
+      <% end %>
+      <li><%= link_to 'LOGOUT', logout_path%></li>
     </ul>
     </hr>
-
+  
   </div>
   
 </nav>
-
 

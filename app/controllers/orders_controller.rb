@@ -1,10 +1,17 @@
 class OrdersController < ApplicationController
+  include AppHelpers::Cart
+
   before_action :check_login
   before_action :set_order, only: [:show, :destroy]
   authorize_resource
   
   def index
-    @all_orders = Order.chronological.paginate(:page => params[:page]).per_page(10)
+    # get data on all orders or orders for particular owner and paginate the output to 10 per page
+    if current_user.role?(:customer)
+      @all_orders = current_user.customer.orders.chronological.paginate(page: params[:page]).per_page(10)
+    else
+      @all_orders = current_user.customer.orders.chronological.paginate(page: params[:page]).per_page(10)
+    end
   end
 
   def show
@@ -28,6 +35,7 @@ class OrdersController < ApplicationController
   
   def destroy
     @order.destroy
+    @cart = destroy_cart
     redirect_to orders_url, notice: "#{@order.name} was removed from the system."
   end
 
