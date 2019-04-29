@@ -1,0 +1,6 @@
+<% if @bread.empty? %>
+  <p><em>There is no bread at this time.</em></p>
+<% else %>
+  <%= render :partial => "item_list", locals: {items: @bread} %>  
+<% end %>
+<br />

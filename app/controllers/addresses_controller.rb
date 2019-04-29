@@ -11,6 +11,7 @@ class AddressesController < ApplicationController
     else
       @active_addresses = Address.active.by_customer.by_recipient.paginate(:page => params[:page]).per_page(10)
       @inactive_addresses = Address.inactive.by_customer.by_recipient.paginate(:page => params[:page]).per_page(10)
+    end
 
   end
 

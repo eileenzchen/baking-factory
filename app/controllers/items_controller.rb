@@ -4,8 +4,9 @@
   authorize_resource
   
   def index
+    @active_items = Item.active.alphabetical.paginate(:page => params[:page]).per_page(10)
     # get info on active items for the big three...
-    @breads = Item.active.for_category('bread').alphabetical.paginate(:page => params[:page]).per_page(10)
+    @bread = Item.active.for_category('bread').alphabetical.paginate(:page => params[:page]).per_page(10)
     @muffins = Item.active.for_category('muffins').alphabetical.paginate(:page => params[:page]).per_page(10)
     @pastries = Item.active.for_category('pastries').alphabetical.paginate(:page => params[:page]).per_page(10)
     # get a list of any inactive items for sidebar

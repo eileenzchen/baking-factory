@@ -1,0 +1,6 @@
+<% if @active_items.empty? %>
+  <p><em>There are no active items at this time.</em></p>
+<% else %>
+  <%= render :partial => "item_list", locals: {items: @active_items} %>  
+<% end %>
+<br />

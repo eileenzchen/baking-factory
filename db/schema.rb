@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20190427200847) do
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "picutre"
+    t.string "picture"
   end
 
   create_table "order_items", force: :cascade do |t|

@@ -1,0 +1,28 @@
+
+  <h4>Items</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th width="80"></th>
+        <th width="225">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% items.each do |item| %>
+        <tr>
+          <% if item.picture.nil? %>
+            <td><%= link_to image_tag("img-not-found.png", :size => "40x40"), item_path(item) %></td>
+          <% else %>
+            <td><%= link_to image_tag(item.picture, :size => "40x40"), item_path(item) %></td>
+          <% end %>
+          
+          <td><%= number_to_currency(item.item_prices.current.take.price) %></td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<%= will_paginate items, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+
+
+    
