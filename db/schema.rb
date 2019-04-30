@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190427200847) do
+ActiveRecord::Schema.define(version: 20190430200945) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "customer_id"
-    t.boolean "is_billing"
+    t.boolean "is_billing", default: false
     t.string "recipient"
     t.string "street_1"
     t.string "street_2"
     t.string "city"
     t.string "state"
     t.string "zip"
-    t.boolean "active"
+    t.boolean "active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_addresses_on_customer_id"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20190427200847) do
     t.string "email"
     t.string "phone"
     t.integer "user_id"
-    t.boolean "active"
+    t.boolean "active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_customers_on_user_id"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20190427200847) do
     t.string "category"
     t.integer "units_per_item"
     t.float "weight"
-    t.boolean "active"
+    t.boolean "active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "picture"
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20190427200847) do
     t.string "username"
     t.string "password_digest"
     t.string "role"
-    t.boolean "active"
+    t.boolean "active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

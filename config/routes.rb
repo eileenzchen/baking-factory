@@ -33,6 +33,11 @@ Rails.application.routes.draw do
   post 'item_prices', to: 'item_prices#create', as: :item_prices
   
   # Set the root url
+  root :to => "users#admin_dashboard", :constraints => {current_user: "admin"}
+  root :to => "customers#dashboard", :constraints => {current_user: "customer"}
+  
+  root :to => "users#shipper_dashboard", :constraints => {current_user: "shipper"}
+  root :to => "users#baker_dashboard", :constraints => {current_user: "baker"}
   root :to => 'home#home'
   
 end

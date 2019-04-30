@@ -24,7 +24,7 @@
 </table>
 <p class="supertiny"></p>
 <br />
-<%= will_paginate @users, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+<%= will_paginate @all_users, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
 <p class="supertiny"></p>
 <br />
 <%= render :partial => "partials/add_new_object", locals: {model_name: 'user'} %>
