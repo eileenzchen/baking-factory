@@ -1,4 +1,5 @@
-  class ItemsController < ApplicationController
+class ItemsController < ApplicationController
+  include AppHelpers::Cart
   before_action :check_login, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   authorize_resource

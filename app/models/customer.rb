@@ -12,6 +12,7 @@ class Customer < ApplicationRecord
 
   # Allow user to be nested within customer
   accepts_nested_attributes_for :user, reject_if: ->(user) { user[:username].blank? }, allow_destroy: true
+  attr_accessor :role, :username, :password, :password_confirmation
 
   # Scopes
   scope :alphabetical,  -> { order(:last_name).order(:first_name) }

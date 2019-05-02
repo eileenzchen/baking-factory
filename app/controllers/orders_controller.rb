@@ -1,5 +1,4 @@
 class OrdersController < ApplicationController
-  include AppHelpers::Cart
 
   before_action :check_login
   before_action :set_order, only: [:show, :edit, :update, :destroy]

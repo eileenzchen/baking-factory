@@ -27,21 +27,36 @@ class CustomersController < ApplicationController
   end
 
   def create
+
     @customer = Customer.new(customer_params)
-    @user = User.new(user_params)
+    @user = User.new
+  
     @user.role = "customer"
+    @user.active = "true"
+    
+    @user.username = @customer.username
+    @user.password = @customer.password
+    @user.password_confirmation = @customer.password_confirmation
+
+    puts @user.inspect
+    puts @customer.inspect
+
     if !@user.save
+      puts @user.errors.inspect
+
       @customer.valid?
       render action: 'new'
     else
       @customer.user_id = @user.id
       if @customer.save
         flash[:notice] = "Successfully created #{@customer.proper_name}."
-        redirect_to customer_dashboard_path(@customer)
+        redirect_to login_path
+      
       else
         render action: 'new'
-      end      
-    end
+      end    
+    end  
+      
   end
 
   def update
@@ -66,11 +81,6 @@ class CustomersController < ApplicationController
   end
 
   def customer_params
-    params.require(:customer).permit(:first_name, :last_name, :email, :phone, :active)
+    params.require(:customer).permit(:first_name, :last_name, :email, :phone, :id, :active, :username, :password, :password_confirmation)
   end
-
-  def user_params
-    params.require(:user).permit(:username, :role, :password, :password_confirmation, :active )
-  end
-
 end
