@@ -10,6 +10,9 @@ p {
   font-size: 16px;
 }
 
+.link {
+  color: #c49a5a
+}
 
 /****NAV****/
 nav {
@@ -201,6 +204,10 @@ td.align_center {
   text-align: center;
 }
 
+th.align_left {
+  text-align: left;
+}
+
 th.align_right {
   text-align: right;
 }
@@ -216,6 +223,24 @@ th.align_center {
 a {
   color: #5379b6;
 }
+
+/****TABS****/
+.tabs .tab a{
+  color:#644933;
+} /*Black color to the text*/
+
+.tabs .tab a:hover {
+  //background-color:#FFF9EB;
+  color:#c49a5a;
+} /*Text color on hover*/
+
+.tabs .tab a.active {
+  color:#c49a5a;
+} /*Background and text color when a tab is active*/
+
+.tabs .indicator {
+  background-color:#644933;
+} /*Color of underline*/
 
 
 /****CARDS****/

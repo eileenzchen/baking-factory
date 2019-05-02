@@ -1,6 +1,6 @@
 <% if @muffins.empty? %>
   <p><em>There are no muffins at this time.</em></p>
 <% else %>
-  <%= render :partial => "item_list", locals: {items: @muffins} %>  
+  <%= render :partial => "partials/item_list", locals: {items: @muffins, item_type: "muffins"} %>  
 <% end %>
 <br />
