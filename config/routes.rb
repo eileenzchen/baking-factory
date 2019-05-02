@@ -6,6 +6,13 @@ Rails.application.routes.draw do
   get 'contact' => 'home#contact', as: :contact
   get 'privacy' => 'home#privacy', as: :privacy
 
+  #cart routes
+  get 'cart', to: 'cart#cart', as: :cart
+  get 'cart/checkout', to: 'cart#checkout', as: :checkout
+  get 'cart/:id/add_item', to: 'cart#add_item', as: :add_item
+  get 'cart/:id/remove_item', to: 'cart#remove_item', as: :remove_item
+  get 'cart/empty_cart', to: 'cart#empty_cart', as: :empty_cart
+
   # Authentication routes
   resources :sessions
   resources :users
@@ -21,10 +28,8 @@ Rails.application.routes.draw do
   resources :items
 
   # Routes for order items and item prices
-  get 'cart', to: 'order_items#edit', as: :view_cart
-  # get 'checkout', to: 'order_items#create', as: :
-  get 'item_prices/new', to: 'item_prices#new', as: :new_item_price
-  post 'item_prices', to: 'item_prices#create', as: :item_prices
+  # get 'item_prices/new', to: 'items#new_price', as: :new_item_price
+  # post 'item_prices', to: 'items#create_price', as: :item_prices
   
   # Set the root url
   root :to => 'home#home'

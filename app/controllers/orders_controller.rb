@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-
+  include AppHelpers::Cart
   before_action :check_login
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   authorize_resource
@@ -29,6 +29,8 @@ class OrdersController < ApplicationController
     @order.date = Date.current
     if @order.save
       @order.pay
+      save_each_item_in_cart(@order)
+      clear_cart
       redirect_to @order, notice: "Thank you for ordering from the Baking Factory."
     else
       render action: 'new'

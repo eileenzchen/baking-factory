@@ -1,12 +1,14 @@
-<% unless items.nil? || items.empty? %>
+<% if @items_in_cart.empty? %>
+  <h4>Your cart is currently empty.</h4>
+<% else %>
   <table class="table">
    
       <tr>
-        <th width="160"></th>
-        <th class="align-left" width="200"></th>
-        <th class="align-left" width="50"></th>
-        <th class="align-left" width="100"></th>
-        <% if controller.controller_name == 'orders' %>
+        <th width="160">Item</th>
+        <th class="align-left" width="200">Name</th>
+        <th class="align-left" width="50">Price</th>
+        <th class="align-left" width="100">Quantity</th>
+        <% if logged_in? && current_user.role?(:customer) || current_user.role?(:admin) %>
           <th width="100">&nbsp;</th>
         <% end %>
       </tr>
@@ -35,7 +37,3 @@
     </tbody>
   </table>
 <% end %>
-
-
-
-    

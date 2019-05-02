@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   include ActionView::Helpers::NumberHelper
-  before_action :check_login, only: [:index, :show, :edit, :update, :destroy]
+  before_action :check_login, except: [:new, :create]
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
   authorize_resource
   
@@ -33,9 +33,6 @@ class CustomersController < ApplicationController
     @user.username = @customer.username
     @user.password = @customer.password
     @user.password_confirmation = @customer.password_confirmation
-
-    puts @user.inspect
-    puts @customer.inspect
 
     if !@user.save
       puts @user.errors.inspect
