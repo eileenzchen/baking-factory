@@ -15,12 +15,6 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: :logout
 
   # Routes for main resources
-  get "admin/dashboard", to: 'users#admin_dashboard', as: :admin_dashboard
-  get "customers/:id/dashboard", to: 'customers#dashboard', as: :customer_dashboard
-  get "shipper/dashboard", to: 'users#shipper_dashboard', as: :shipper_dashboard
-  get "baker/dashboard", to: 'users#baker_dashboard', as: :baker_dashboard
-
-
   resources :addresses
   resources :customers
   resources :orders
@@ -33,11 +27,6 @@ Rails.application.routes.draw do
   post 'item_prices', to: 'item_prices#create', as: :item_prices
   
   # Set the root url
-  root :to => "users#admin_dashboard", :constraints => {current_user: "admin"}
-  root :to => "customers#dashboard", :constraints => {current_user: "customer"}
-  
-  root :to => "users#shipper_dashboard", :constraints => {current_user: "shipper"}
-  root :to => "users#baker_dashboard", :constraints => {current_user: "baker"}
   root :to => 'home#home'
   
 end

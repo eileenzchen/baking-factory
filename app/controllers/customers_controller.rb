@@ -3,10 +3,6 @@ class CustomersController < ApplicationController
   before_action :check_login, only: [:index, :show, :edit, :update, :destroy]
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
   authorize_resource
-
-  def dashboard
-    @customer = Customer.find(params[:id])
-  end
   
   def index
     @active_customers = Customer.active.alphabetical.paginate(:page => params[:page]).per_page(10)

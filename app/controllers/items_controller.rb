@@ -23,6 +23,23 @@ class ItemsController < ApplicationController
     @similar_items = Item.for_category(@item.category).alphabetical.to_a
   end
 
+  def new_price
+    @item_price = ItemPrice.new
+  end
+
+  def create_price
+    @item_price = ItemPrice.new(item_price_params)
+    @item_price.start_date = Date.current
+   
+    if @item_price.save
+      flash[:notice] = "Successfully updated item price."
+      redirect_to @item
+    else
+      @item = Item.find(params[:item_price][:item_id])
+      render action: 'new', locals: { item: @item }
+    end
+  end
+
   def new
     @item = Item.new
   end
@@ -59,6 +76,10 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :description, :picture, :category, :units_per_item, :weight, :active)
+  end
+
+  def item_price_params
+    params.require(:item).permit(:item_id, :price)
   end
 
 end

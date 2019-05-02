@@ -7,6 +7,7 @@ class OrderItem < ApplicationRecord
   belongs_to :item
 
   # Scopes
+  scope :chronological, -> { order(shipped_on: :desc) }
   scope :shipped,   -> { where.not(shipped_on: nil) }
   scope :unshipped, -> { where(shipped_on: nil) }
 

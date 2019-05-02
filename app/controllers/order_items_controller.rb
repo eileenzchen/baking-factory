@@ -2,6 +2,12 @@ class OrderItemsController < ApplicationController
   include AppHelpers::Cart
   before_action :check_login
   authorize_resource
+
+  def index
+    @shipped = OrderItem.all.shipped.chronological.paginate(page: params[:page]).per_page(10)
+    @unshipped = OrderItem.all.paginate(page: params[:page]).per_page(10)
+   
+  end
   
   def new
     @order_item = OrderItem.new
@@ -15,15 +21,20 @@ class OrderItemsController < ApplicationController
       flash[:notice] = "Successfully added #{@order_item.quantity} #{@item.name} to cart."
       redirect_to home_path
     else
-      render action: 'new', locals: { visit: @visit, pet: @pet }
+      render action: 'new', locals: { order: @order, item: @item }
     end
   end
  
   def destroy
-    @dosage = Dosage.find(params[:id])
-    @dosage.destroy
-    flash[:notice] = "Successfully removed this dosage."
-    redirect_to visit_path(@dosage.visit)
+    @order_item = OrderItem.find(params[:id])
+    if @order_item.destroy
+      flash[:notice] = "Successfully removed this order item."
+      redirect_to order_path(@order_item.order)
+    else
+      render action: 'show'
+    end
+    
+    
   end
 
   private

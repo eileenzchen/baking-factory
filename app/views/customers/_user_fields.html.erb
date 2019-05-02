@@ -1,4 +1,5 @@
-<%= @user.errors.to_a%>
+
+<%= @user.errors.to_a if !@user.nil? %>
 
 <%= f.input :username, label_html: { class: 'active' } %>
 <%= f.input :password, label_html: { class: 'active' } %>

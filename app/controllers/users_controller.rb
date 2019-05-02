@@ -3,8 +3,6 @@ class UsersController < ApplicationController
   before_action :check_login
   authorize_resource
 
-
-
   def index
     @all_users = User.all.alphabetical.paginate(page: params[:page]).per_page(15)
     @employees = User.employees.alphabetical.paginate(page: params[:page]).per_page(15)
@@ -45,10 +43,6 @@ class UsersController < ApplicationController
     else
       render action: 'show'
     end
-  end
-
-  def admin_dashboard
-    @active_customers = Customer.active.alphabetical.paginate(:page => params[:page]).per_page(10)
   end
 
   private
