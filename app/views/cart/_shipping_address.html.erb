@@ -1,0 +1,14 @@
+<h5>1. Shipping Address</h5>
+</br>
+<%= simple_form_for(@order) do |f| %>
+  <%= f.error_notification %>
+  <div class="row">
+
+    <div class="form-inputs">
+      <div>
+        <%= f.select :address_id, @addresses, {}, { value: addresses.first, class: 'form-control', onchange: 'this.form.submit();' } %>
+     </div>
+    </div>
+  </div>
+
+<% end %>

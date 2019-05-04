@@ -42,7 +42,12 @@ class CartController < ApplicationController
   end
 
   def checkout
+    @order = Order.new
     @num_items_in_cart = get_number_of_items
+    @user = User.find(params[:id])
+    @customer = Customer.find(params[:id])
+    
+    @addresses = get_address_options(@user)
   end
 
 
