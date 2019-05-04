@@ -16,9 +16,9 @@
   <!-- Partials for the topbar and navigation -->
 
   <% if logged_in? && ( current_user.role?(:admin)) %>
-    <%= render :partial => "partials/nav_admin" %>
+    <%= render :partial => "carts/nav_admin" %>
   <% elsif logged_in? && current_user.role?(:customer) %>
-    <%= render :partial => "partials/nav_customer" %>
+    <%= render :partial => "carts/nav_customer" %>
   <% elsif logged_in? && current_user.role?(:baker) %>
     <%= render :partial => "partials/nav_baker" %>
   <% elsif logged_in? && current_user.role?(:shipper) %>

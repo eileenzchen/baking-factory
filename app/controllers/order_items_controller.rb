@@ -24,6 +24,14 @@ class OrderItemsController < ApplicationController
       render action: 'new', locals: { order: @order, item: @item }
     end
   end
+
+  def update
+    if @order_item.update(order_item_params)
+      redirect_to @order_item, notice: "Your item was updated in the system."
+    else
+      render action: 'edit'
+    end
+  end
  
   def destroy
     @order_item = OrderItem.find(params[:id])

@@ -27,6 +27,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.date = Date.current
+    @order.grand_total = 
     if @order.save
       @order.pay
       save_each_item_in_cart(@order)
@@ -38,7 +39,7 @@ class OrdersController < ApplicationController
   end
 
   def update
-    if @order.update(item_params)
+    if @order.update(order_params)
       redirect_to @order, notice: "Your order was updated in the system."
     else
       render action: 'edit'

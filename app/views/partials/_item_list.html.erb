@@ -1,28 +1,26 @@
 <% unless items.nil? || items.empty? %>
   <table class="table">
    
-      <tr>
-        <th width="160"></th>
-        <th class="align-left" width="200"></th>
-        <th class="align-left" width="50"></th>
-        <th class="align-left" width="100"></th>
-        <% if controller.controller_name == 'orders' %>
-          <th width="100">&nbsp;</th>
-        <% end %>
-      </tr>
+    </br>
     
     <tbody>
       <% items.each do |item| %>
         <tr>
-          <% if item.picture.nil? %>
-            <td width="120"><%= link_to image_tag("img-not-found.png", :size => "100x100"), item_path(item) %></td>
-          <% else %>
-            <td width="120"><%= link_to image_tag(item.picture, :size => "100x100"), item_path(item) %></td>
-          <% end %>
-          <td width="215"><%= link_to item.name, item_path(item), class: "link align-left"  %></td>
-          <td width="100"><%= number_to_currency item.current_price, class: "align-left" %></td>
           <% item_type = item.category.downcase %>
-          <td width="120"><%= item.units_per_item %> <%= item_type == 'bread' ? 'loaf' : item_type %></td>
+          <% if item.picture.nil? %>
+            <td width="130"><%= link_to image_tag("img-not-found.png", :size => "100x100"), item_path(item) %></td>
+          <% else %>
+            <td width="130"><%= link_to image_tag(item.picture, :size => "100x100"), item_path(item) %></td>
+          <% end %>
+
+          <td style="vertical-align: top" width="400"><%= link_to item.name, item_path(item), class: "link align-left"  %>
+            </br>
+            <%= number_to_currency item.current_price, class: "align-left" %>
+          
+            </br>
+            <%= item.units_per_item %> <%= item_type == 'bread' ? 'loaf' : item_type %>
+          </td>
+
           <% if logged_in? && current_user.role?(:customer) || current_user.role?(:admin) %>
             <td>
               <%= link_to(add_item_path(item.id), class: 'btn button tiny radius') do %>
@@ -35,6 +33,11 @@
     </tbody>
   </table>
 <% end %>
+
+<tr>
+
+          
+
 
 
 

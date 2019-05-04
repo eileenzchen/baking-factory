@@ -55,6 +55,20 @@ module AppHelpers
       order_items    
     end
 
+    def get_number_of_items
+      quant = 0
+      return 0 if session[:cart].empty?
+      session[:cart].each do |item_id, quantity|
+        quant += quantity
+      end
+      puts "here"
+      return quant
+    end
+
+    # def update_quantity(order_item)
+    #   order_item.update_attribute(:quantity)
+    # end
+
     def save_each_item_in_cart(order)
       session[:cart].each do |item_id, quantity|
         info = {item_id: item_id, quantity: quantity, order_id: order.id}

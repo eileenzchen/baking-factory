@@ -1,8 +1,14 @@
 class ItemsController < ApplicationController
   include AppHelpers::Cart
   before_action :check_login, except: [:index, :show]
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :toggle]
   authorize_resource
+
+  def toggle
+    @item = Item.new(item_params)
+    #if item active make inactive, if inactive, make active
+    #for shipping if nil, set to today, if not nil, set to nil order_items/:id/toggle
+  end
   
   def index
     @active_items = Item.active.alphabetical.paginate(:page => params[:page]).per_page(10)
