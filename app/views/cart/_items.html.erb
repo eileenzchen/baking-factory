@@ -1,1 +1,52 @@
-<h5>3. Review Items</h5>
+<h5 style="display: inline">3. Review Items</h5>
+<div style="float: right" >
+<%= link_to(view_cart_path, class: 'btn button tiny radius') do %>
+  Review cart
+<% end %>
+</div>
+</br>
+<% if @items_in_cart.empty? %>
+  <p>Your cart is currently empty.</p>
+
+
+<% else %>
+  <table class="table">
+   
+
+    
+    <tbody>
+
+      <% @items_in_cart.each do |order_item| %>
+        <tr>
+          <%item = order_item.item%>
+          <% item_type = item.category.downcase %>
+          <% if item.picture.nil? %>
+            <td width="130"><%= link_to image_tag("img-not-found.png", :size => "100x100"), item_path(item) %></td>
+          <% else %>
+            <td width="130"><%= link_to image_tag(item.picture, :size => "100x100"), item_path(item) %></td>
+          <% end %>
+
+          <td style="vertical-align: top" width="450"><%= link_to item.name, item_path(item), class: "link align-left"  %>
+            </br>
+            <%= number_to_currency item.current_price, class: "align-left" %>
+            </br>
+            Qty: <%=order_item.quantity%>
+            <!--<%= form_for(order_item, url: "update_quantity_path") do |f| %>
+              <div >
+                <%= f.select :quantity, [1, 2, 3, 4, 5], {}, { value: order_item.quantity, class: 'form-control', onchange: 'this.form.submit();' } %>
+              </div>
+            <% end %>-->
+
+          </td>
+          
+
+
+
+
+         
+        </tr>
+      <% end %>
+  
+    </tbody>
+  </table>
+<% end %>

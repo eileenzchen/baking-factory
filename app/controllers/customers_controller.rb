@@ -1,5 +1,6 @@
 class CustomersController < ApplicationController
   include ActionView::Helpers::NumberHelper
+  include AppHelpers::Cart
   before_action :check_login, except: [:new, :create]
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
   authorize_resource
@@ -11,6 +12,9 @@ class CustomersController < ApplicationController
 
   def show
     @previous_orders = @customer.orders.chronological
+    if logged_in? && current_user.role?(:admin) || current_user.role?(:customer)
+      @num_items_in_cart = get_number_of_items
+    end
   end
 
   def new

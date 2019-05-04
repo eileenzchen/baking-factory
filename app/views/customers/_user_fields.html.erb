@@ -1,6 +1,10 @@
-
-<%= @user.errors.to_a if !@user.nil? %>
-
-<%= f.input :username, label_html: { class: 'active' } %>
-<%= f.input :password, label_html: { class: 'active' } %>
-<%= f.input :password_confirmation, label_html: { class: 'active' } %>
+<% errs = @user.errors.to_a if !@user.nil? %>
+</br>
+<% errs.each do |e| %>
+    &nbsp;&nbsp;&nbsp;&nbsp;<em><%= e %></em>
+    </br>
+<% end %>
+</br>
+<%= f.input :username, input_html: { class: 'avg'}, label_html: { class: 'active' } %>
+<%= f.input :password, input_html: { class: 'avg'}, label_html: { class: 'active' } %>
+<%= f.input :password_confirmation, input_html: { class: 'avg'}, label_html: { class: 'active' } %>

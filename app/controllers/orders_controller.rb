@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   include AppHelpers::Cart
+  include AppHelpers::Shipping
   before_action :check_login
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   authorize_resource
@@ -32,15 +33,37 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+
     @order.date = Date.current
-    @order.grand_total = 
+    subtotal = calculate_cart_items_cost
+    shipping_cost = calculate_cart_shipping 
+
+    if @order.customer_id.nil?
+      @order.customer_id = current_user.customer.id
+    end
+    @order.grand_total = subtotal + shipping_cost
+
+    
+  
+    
     if @order.save
-      @order.pay
       save_each_item_in_cart(@order)
+      @order.pay
       clear_cart
-      redirect_to @order, notice: "Thank you for ordering from the Baking Factory."
+      if current_user.role?(:customer)
+        redirect_to home_path, notice: "Thank you for ordering from the Baking Factory."
+      else
+        redirect_to @order, notice: "Thank you for ordering from the Baking Factory."
+      end
     else
-      render action: 'new'
+      puts "&*&*&**&**&&**&"
+      puts @order.errors.to_a
+      if current_user.role?(:admin)
+        render action: 'new'
+      else
+        redirect_to checkout_path
+      end
+
     end
   end
 
@@ -64,7 +87,7 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:address_id, :customer_id, :grand_total)
+    params.require(:order).permit(:address_id, :customer_id, :credit_card_number, :expiration_year, :expiration_month)
   end
 
 end

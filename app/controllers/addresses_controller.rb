@@ -1,4 +1,5 @@
 class AddressesController < ApplicationController
+  include AppHelpers::Cart
   before_action :check_login
   before_action :set_address, only: [:show, :edit, :update, :destroy]
   authorize_resource
@@ -6,11 +7,14 @@ class AddressesController < ApplicationController
   def index
     # get data on all addresses or addresses for a particular customer and paginate the output to 10 per page
     if current_user.role?(:customer)
-      @active_addresses = current_user.owner.addresses.active.by_recipient.paginate(page: params[:page]).per_page(10)
-      @inactive_addresses = current_user.owner.addresses.inactive.by_recipient.paginate(page: params[:page]).per_page(10)
+      @active_addresses = current_user.customer.addresses.active.by_recipient.paginate(page: params[:page]).per_page(10)
+      @inactive_addresses = current_user.customer.addresses.inactive.by_recipient.paginate(page: params[:page]).per_page(10)
     else
       @active_addresses = Address.active.by_customer.by_recipient.paginate(:page => params[:page]).per_page(10)
       @inactive_addresses = Address.inactive.by_customer.by_recipient.paginate(:page => params[:page]).per_page(10)
+    end
+    if logged_in? && current_user.role?(:admin) || current_user.role?(:customer)
+      @num_items_in_cart = get_number_of_items
     end
 
   end
@@ -20,16 +24,29 @@ class AddressesController < ApplicationController
 
   def new
     @address = Address.new
+    if logged_in? && current_user.role?(:admin) || current_user.role?(:customer)
+      @num_items_in_cart = get_number_of_items
+    end
   end
 
   def edit
   end
 
   def create
+    if logged_in? && current_user.role?(:admin) || current_user.role?(:customer)
+      @num_items_in_cart = get_number_of_items
+    end
     @address = Address.new(address_params)
-    
+    if @address.customer_id.nil?
+      @address.customer_id = current_user.customer.id
+    end
     if @address.save
-      redirect_to customer_path(@address.customer), notice: "The address was added to #{@address.customer.proper_name}."
+      if current_user.role?(:admin)
+        redirect_to customer_path(@address.customer), notice: "The address was added to #{@address.customer.proper_name}."
+      elsif current_user.role?(:customer)
+        
+        redirect_to checkout_path
+      end
     else
       render action: 'new'
     end

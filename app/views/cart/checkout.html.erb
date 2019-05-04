@@ -5,10 +5,8 @@
         
         
     <%=render :partial => "shipping_address"%>
-    <%=render :partial => "payment"%>
     <%=render :partial => "items"%>
 
- 
     
   </div>
   <div class="col s4 push-s3">
@@ -16,6 +14,7 @@
     <%= link_to(place_order_path, class: 'btn button tiny radius', style: "width: 100%") do %>
       Place Order
     <% end %>
+
   </div> 
   
 </div>

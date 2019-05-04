@@ -1,3 +1,10 @@
-    <%= f.input :customer_id, collection: Customer.active.alphabetical, include_blank: true, input_html: {class: "avg"} %>
-    <%= f.input :address_id, collection: get_address_options, include_blank: true, input_html: {class: "avg"} %>
-    <%= f.input :grand_total, as: :string, input_html: {class: "avg"} %>
+<% errs = @order.errors.to_a if !@order.nil? %>
+</br>
+<% errs.each do |e| %>
+    &nbsp;&nbsp;&nbsp;&nbsp;<em><%= e %></em>
+    </br>
+<% end %>
+</br>
+<%= f.input :customer_id, collection: Customer.active.alphabetical, include_blank: true, input_html: {class: "avg"}, label_html: {class: "active"} %>
+<%= f.input :address_id, collection: get_address_options, include_blank: true, input_html: {class: "avg"}, label_html: {class: "active"} %>
+<%= f.input :grand_total, as: :string, input_html: {class: "avg", label_html: {class: "active"}} %>

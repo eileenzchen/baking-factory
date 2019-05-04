@@ -3,6 +3,7 @@ class CartController < ApplicationController
   include AppHelpers::Cart
 
   include AppHelpers::Shipping
+  include ApplicationHelper
   before_action :check_login
   #authorize_resource
 
@@ -42,12 +43,18 @@ class CartController < ApplicationController
   end
 
   def checkout
+    puts "checkout"
+    puts current_user.inspect
+    puts current_user.customer.inspect
+    
     @order = Order.new
     @num_items_in_cart = get_number_of_items
-    @user = User.find(params[:id])
-    @customer = Customer.find(params[:id])
+    @items_in_cart = get_list_of_items_in_cart
+    @subtotal = calculate_cart_items_cost
+    @shipping_cost = calculate_cart_shipping
+    @total = @subtotal + @shipping_cost
     
-    @addresses = get_address_options(@user)
+    @addresses = get_address_options_long(current_user)
   end
 
 

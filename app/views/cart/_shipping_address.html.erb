@@ -4,11 +4,39 @@
   <%= f.error_notification %>
   <div class="row">
 
-    <div class="form-inputs">
+    <div class="controls form-inputs">
       <div>
-        <%= f.select :address_id, @addresses, {}, { value: addresses.first, class: 'form-control', onchange: 'this.form.submit();' } %>
+        <%= f.select :address_id, @addresses.to_a, {}, { value: @addresses.first, class: 'form-control', onchange: 'this.form.submit();' } %>
      </div>
+     <%= link_to(new_address_path, class: 'btn button tiny radius') do %>
+        Add a new address
+      <% end %>
     </div>
+    
   </div>
 
+
+</br>
+<h5>2. Payment</h5>
+</br>
+
+  <%= f.error_notification %>
+  <div class="row">
+
+    <div class="form-inputs">
+      <div class="controls">
+        <%= f.input :credit_card_number, input_html: { class: 'avg'}, label_html: { class: 'active' } %>
+        <div class="row">
+          <%= f.select :expiration_month, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], {}, { value: @addresses.first, label_html: { class: 'active'}, class: 'controls form-control col s4'} %>
+          <%= f.select :expiration_year, [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027], {}, { value: 2019, label_html: { class: 'active'}, class: 'controls form-control col s4' } %>
+        </div>
+      </div>
+
+    </div>
+    
+  </div>
+  <%= f.button :submit %>
+
 <% end %>
+
+</br>

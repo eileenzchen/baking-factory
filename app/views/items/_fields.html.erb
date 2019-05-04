@@ -1,8 +1,15 @@
-    <%= f.input :name, as: :string, include_blank: true, input_html: {class: "avg"} %>
-    <%= f.input :description, as: :string, include_blank: true, input_html: {class: "avg"} %>
-    <%= f.input :category, collection: ["bread", "muffins", "pastries"], input_html: {class: "avg"} %>
-    <%= f.input :units_per_item, as: :integer, input_html: {class: "avg"} %>   
-    <%= f.input :weight, as: :float, input_html: {class: "avg"} %>   
-    <%= f.input :Photo, input_html: {class: "file-path-wrapper"} %>
+<% errs = @item.errors.to_a if !@item.nil? %>
+</br>
+<% errs.each do |e| %>
+    &nbsp;&nbsp;&nbsp;&nbsp;<em><%= e %></em>
+    </br>
+<% end %>
+</br>
+<%= f.input :name, as: :string, include_blank: true, input_html: {class: "avg"}, label_html: {class: "active"} %>
+<%= f.input :description, as: :string, include_blank: true, input_html: {class: "avg"}, label_html: {class: "active"} %>
+<%= f.input :category, collection: ["bread", "muffins", "pastries"], input_html: {class: "avg"}%>
+<%= f.input :units_per_item, as: :integer, input_html: {class: "avg"}, label_html: {class: "active"} %>   
+<%= f.input :weight, as: :float, input_html: {class: "avg"}, label_html: {class: "active"} %>   
+<%= f.input :Photo, input_html: {class: "file-path-wrapper"} %>
 
-    <%= f.input :active %>
+<%= f.input :active %>
