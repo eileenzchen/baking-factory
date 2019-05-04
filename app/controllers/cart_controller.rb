@@ -1,4 +1,4 @@
-class CartsController < ApplicationController
+class CartController < ApplicationController
 
   include AppHelpers::Cart
 
@@ -42,7 +42,7 @@ class CartsController < ApplicationController
   end
 
   def checkout
-    
+    @num_items_in_cart = get_number_of_items
   end
 
 

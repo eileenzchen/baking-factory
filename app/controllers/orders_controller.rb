@@ -11,10 +11,16 @@ class OrdersController < ApplicationController
     else
       @all_orders = Order.all.chronological.paginate(page: params[:page]).per_page(10)
     end
+    if logged_in? && current_user.role?(:admin) || current_user.role?(:customer)
+      @num_items_in_cart = get_number_of_items
+    end
   end
 
   def show
     @previous_orders = @order.customer.orders.chronological.to_a
+    if logged_in? && current_user.role?(:admin) || current_user.role?(:customer)
+      @num_items_in_cart = get_number_of_items
+    end
   end
 
   def new

@@ -7,12 +7,12 @@ Rails.application.routes.draw do
   get 'privacy' => 'home#privacy', as: :privacy
 
   #cart routes
-  get 'carts/view', to: 'carts#show', as: :view_cart
-  get 'carts/checkout', to: 'carts#checkout', as: :checkout
-  get 'carts/:id/add_item', to: 'carts#add_item', as: :add_item
-  get 'carts/:id/remove_item', to: 'carts#remove_item', as: :remove_item
-  get 'carts/empty_cart', to: 'carts#empty_cart', as: :empty_cart
-  # post 'carts/update_quantity', to: 'carts#update_quantity', as: :update_quantity
+  get 'cart/view', to: 'cart#show', as: :view_cart
+  get 'cart/checkout', to: 'cart#checkout', as: :checkout
+  get 'cart/:id/add_item', to: 'cart#add_item', as: :add_item
+  get 'cart/:id/remove_item', to: 'cart#remove_item', as: :remove_item
+  get 'cart/empty_cart', to: 'cart#empty_cart', as: :empty_cart
+  # post 'cart/update_quantity', to: 'cart#update_quantity', as: :update_quantity
 
   # get 'items/:id/toggle, to: 'items#toggle', as: :toggle_item
 
@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: :logout
 
   # Routes for main resources
+  get 'place_order', to: 'orders#create', as: :place_order
   resources :addresses
   resources :customers
   resources :orders

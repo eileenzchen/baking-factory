@@ -29,7 +29,11 @@
   </div>
   <div class="col s4">
     <%=render :partial => "order_summary"%>
+    <%= link_to(checkout_path, class: 'btn button tiny radius', style: "width: 100%") do %>
+      Checkout
+    <% end %>
   </div> 
+  
 </div>
 
 

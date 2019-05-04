@@ -1,0 +1,43 @@
+<h3><%=item.name%></h3>
+</br>
+<div class="row">
+  <div class="col s3">
+
+    <% if item.picture.nil? %>
+      <%= image_tag("img-not-found.png", :size => "200x200") %>
+    <% else %>
+      <%= image_tag(item.picture, :size => "200x200") %>
+    <% end %>
+  </div>
+  <div class="col s5">
+    <% if logged_in? && current_user.role?(:admin) %>
+      <p>
+        <b>Category</b>: <%= item.category %>
+      </p>
+    <% end %>
+
+    <p>
+      <%= item.description %>
+    </p>
+
+    <p>
+      Units: <%= item.units_per_item %> <%= item.category == 'bread' ? 'loaf' : item.category.downcase %>
+    </p>
+
+    <p>
+      Weight: <%= item.weight %> lbs
+    </p>
+
+
+    <% if logged_in? && current_user.role?(:customer) || current_user.role?(:admin) %>
+      <td>
+        <%= link_to(add_item_path(item.id), class: 'btn button tiny radius') do %>
+          &nbsp;Add to Cart&nbsp;
+        <% end %>
+      </td>
+    <% end %>
+  </div>
+
+</div>
+
+

@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
     redirect_to home_path
   end
 
+
   private
   # Handling authentication
   def current_user
@@ -22,5 +23,6 @@ class ApplicationController < ActionController::Base
   def check_login
     redirect_to login_path, alert: "You need to log in to view this page." if current_user.nil?  
   end
+
 
 end
