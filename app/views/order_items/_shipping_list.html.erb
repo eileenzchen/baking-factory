@@ -41,11 +41,11 @@
               <%if oi.shipped_on.nil?%>
                 <%=link_to('Mark as shipped', toggle_shipped_path(oi.id), 
                         method: :patch, 
-                        class: "mark-shipped btn button tiny radius")%>
+                        class: " btn button tiny radius")%>
               <%else%>
                 <%=link_to('Mark as unshipped', toggle_shipped_path(oi.id), 
                         method: :patch,
-                        class: "mark-unshipped btn button tiny radius")%>
+                        class: " btn button tiny radius")%>
               <%end%>
             
        

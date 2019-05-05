@@ -7,14 +7,13 @@ class OrderItemsController < ApplicationController
     @order_item = OrderItem.find(params[:id])
     if @order_item.shipped_on.nil?
       @order_item.update_attribute(:shipped_on, Date.current)
+      flash[:notice] = "Order item marked as shipped."
     else
       @order_item.update_attribute(:shipped_on, nil)
+      flash[:notice] = "Order item marked as unshipped."
     end
-    if current_user.role?(:admin)
-      redirect_to @order_items
-    else
-
-      redirect_to home_path
+ 
+    redirect_back fallback_location: home_path
       
 
     end

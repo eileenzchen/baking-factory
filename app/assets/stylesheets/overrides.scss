@@ -11,7 +11,7 @@ p {
 }
 
 .link {
-  color: #c49a5a
+  color: #c49a5a;
 }
 
 /****NAV****/
@@ -44,6 +44,12 @@ nav .text-home {
   padding-left: 20px;
   padding-bottom: 22px;
   color: #644933;
+}
+
+nav .text-home:hover {
+
+  color: #644933;
+  
 }
 
 nav p {
@@ -217,7 +223,7 @@ th.align_center {
 }
 
 .material-icons {
-  color: #644933;
+  color: #c49a5a;
 }
 
 a {

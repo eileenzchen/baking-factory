@@ -1,15 +1,15 @@
 <% if addresses.empty? %>
   <p><em>There are no <%= state %> addresses at this time.</em></p>
 <% else %>
-<h2><%= state.capitalize %> Addresses</h2>
-<table class="table table-striped">
+<h4><%= state.capitalize %> Addresses</h4>
+<table class="table striped highlight">
   <thead>
     <tr>
-      <th width="225">Customer</th>
-      <th width="225">Recipient</th>
-      <th width="350">Address</th>
-      <th width="75">Billing?</th>
-      <th width="75">&nbsp;</th>
+      <th >Customer</th>
+      <th>Recipient</th>
+      <th>Address</th>
+      <th >Billing?</th>
+      <th >&nbsp;</th>
     </tr>
   </thead>
   <tbody>
@@ -22,9 +22,11 @@
         </td>
         <td align="center"><%= address.is_billing ? "Yes" : "No" %></td>      
         <td>
-          <%= link_to(edit_address_path(address), class: 'button tiny radius warning') do %>
-            &nbsp;Edit&nbsp;
-          <% end %>
+        <% if can? :edit, address %>
+          <%= link_to edit_address_path(address) do %>
+            <i class="material-icons">edit</i>
+          <% end %> 
+        <% end %>
         </td>
       </tr>
     <% end %>

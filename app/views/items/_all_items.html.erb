@@ -1,6 +1,16 @@
-<% if @active_items.empty? %>
-  <p><em>There are no active items at this time.</em></p>
-<% else %>
-  <%= render :partial => "partials/item_list", locals: {items: @active_items} %>  
-<% end %>
-<br />
+<% if logged_in? && current_user.role?(:admin) %>
+  <% if @all_items.empty? %>
+    <p><em>There are no active items at this time.</em></p>
+  <% else %>
+    <%= render :partial => "partials/item_list", locals: {items: @all_items} %>  
+  <% end %>
+  <br />
+<%else%>
+
+  <% if @active_items.empty? %>
+    <p><em>There are no active items at this time.</em></p>
+  <% else %>
+    <%= render :partial => "partials/item_list", locals: {items: @active_items} %>  
+  <% end %>
+  <br />
+<%end%>

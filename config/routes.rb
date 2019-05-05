@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get 'cart/empty_cart', to: 'cart#empty_cart', as: :empty_cart
   # post 'cart/update_quantity', to: 'cart#update_quantity', as: :update_quantity
 
-  # get 'items/:id/toggle, to: 'items#toggle', as: :toggle_item
+  
 
   # Authentication routes
   resources :sessions
@@ -27,15 +27,17 @@ Rails.application.routes.draw do
   # Routes for main resources
   get 'place_order', to: 'orders#create', as: :place_order
   patch 'order_items/:id/toggle_shipped', to: 'order_items#toggle_shipped', as: :toggle_shipped
+  patch 'customers/:id/toggle_customer', to: 'customers#toggle_customer', as: :toggle_customer
+  patch 'items/:id/toggle_item', to: 'items#toggle_item', as: :toggle_item
   resources :addresses
   resources :customers
   resources :orders
   resources :items
   resources :order_items
 
-  # Routes for item prices
-  # get 'item_prices/new', to: 'items#new_price', as: :new_item_price
-  # post 'item_prices', to: 'items#create_price', as: :item_prices
+  #Routes for item prices
+  get 'items_prices/new', to: 'item_prices#new', as: :new_item_price
+  post 'item_prices', to: 'item_prices#create', as: :item_prices
   
   # Set the root url
   root :to => 'home#home'

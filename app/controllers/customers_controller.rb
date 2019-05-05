@@ -4,6 +4,22 @@ class CustomersController < ApplicationController
   before_action :check_login, except: [:new, :create]
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
   authorize_resource
+
+  def toggle_customer
+    @customer = Customer.find(params[:id])
+    if @customer.active?
+      @customer.update_attribute(:active, false)
+      flash[:notice] = "#{@customer.proper_name} made inactive."
+    else
+      @customer.update_attribute(:active, true)
+      flash[:notice] = "#{@customer.proper_name} made active."
+    end
+    
+    redirect_back fallback_location: home_path
+   
+    
+    
+  end
   
   def index
     @active_customers = Customer.active.alphabetical.paginate(:page => params[:page]).per_page(10)

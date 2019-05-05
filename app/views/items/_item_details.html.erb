@@ -1,43 +1,68 @@
-<h3><%=item.name%></h3>
+<div class="card">
+  <div class="card-content">
+
+<h4><%=@item.name%></h4>
 </br>
 <div class="row">
-  <div class="col s3">
+  <div class="col s4">
 
-    <% if item.picture.nil? %>
+    <% if @item.picture.nil? || @item.picture.empty? %>
       <%= image_tag("img-not-found.png", :size => "200x200") %>
     <% else %>
-      <%= image_tag(item.picture, :size => "200x200") %>
+      <%= image_tag(@item.picture, :size => "200x200") %>
     <% end %>
   </div>
   <div class="col s5">
     <% if logged_in? && current_user.role?(:admin) %>
       <p>
-        <b>Category</b>: <%= item.category %>
-      </p>
+        <b style="font-size: 18px">Category</b>: <%= @item.category.capitalize %>
+      </p></br>
     <% end %>
 
     <p>
-      <%= item.description %>
-    </p>
+      <% if logged_in? && current_user.role?(:admin) %>
+      <b style="font-size: 18px">Description</b>: 
+      <%end%>
+      <%= @item.description %>
+    </p></br>
 
     <p>
-      Units: <%= item.units_per_item %> <%= item.category == 'bread' ? 'loaf' : item.category.downcase %>
-    </p>
+      <b style="font-size: 18px"> Units:</b> <%= @item.units_per_item %> <%= @item.category == 'bread' ? 'loaf' : @item.category.downcase %>
+    </p></br>
 
     <p>
-      Weight: <%= item.weight %> lbs
+      <b style="font-size: 18px">Weight:</b> <%= @item.weight %> lbs
     </p>
+    </br>
+    <% if logged_in? && current_user.role?(:customer) %>
 
+      <%= link_to(add_item_path(@item.id), class: 'btn button tiny radius') do %>
+        &nbsp;Add to Cart&nbsp;
+      <% end %>
+    <% elsif logged_in? && current_user.role?(:admin) %>
 
-    <% if logged_in? && current_user.role?(:customer) || current_user.role?(:admin) %>
-      <td>
-        <%= link_to(add_item_path(item.id), class: 'btn button tiny radius') do %>
-          &nbsp;Add to Cart&nbsp;
-        <% end %>
-      </td>
+      <% if @item.active %>
+        
+        <%=link_to('Make inactive', toggle_item_path(@item.id), 
+                method: :patch, 
+                class: " btn button tiny radius")%>
+        
+      <% else %>
+        
+        <%=link_to('Make active', toggle_item_path(@item.id), 
+                method: :patch, 
+                class: " btn button tiny radius")%>
+
+      <% end %>
+
     <% end %>
+
+    
   </div>
 
+
+</div>
 </div>
 
+</div>
 

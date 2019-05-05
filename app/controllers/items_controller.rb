@@ -4,13 +4,24 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy, :toggle]
   authorize_resource
 
-  def toggle
-    @item = Item.new(item_params)
-    #if item active make inactive, if inactive, make active
-    #for shipping if nil, set to today, if not nil, set to nil order_items/:id/toggle
+  def toggle_item
+    @item = Item.find(params[:id])
+    if @item.active?
+      @item.update_attribute(:active, false)
+      flash[:notice] = "#{@item.name} made inactive"
+    else
+      @item.update_attribute(:active, true)
+      flash[:notice] = "#{@item.name} made active"
+    end
+    
+    redirect_back fallback_location: home_path
+   
+    
+    
   end
   
   def index
+    @all_items = Item.all.alphabetical.paginate(:page => params[:page]).per_page(10)
     @active_items = Item.active.alphabetical.paginate(:page => params[:page]).per_page(10)
     # get info on active items for the big three...
     @bread = Item.active.for_category('bread').alphabetical.paginate(:page => params[:page]).per_page(10)
@@ -23,7 +34,7 @@ class ItemsController < ApplicationController
   def show
     if logged_in? && current_user.role?(:admin)
       # admin gets a price history in the sidebar
-      @previous_prices = @item.item_prices.chronological.to_a
+      @prices = @item.item_prices.chronological.to_a
     end
     # everyone sees similar items in the sidebar
     @similar_items = Item.for_category(@item.category).alphabetical.to_a
@@ -34,6 +45,7 @@ class ItemsController < ApplicationController
 
   def new_price
     @item_price = ItemPrice.new
+    @item = Item.find(params[:id])
   end
 
   def create_price
@@ -45,7 +57,7 @@ class ItemsController < ApplicationController
       redirect_to @item
     else
       @item = Item.find(params[:item_price][:item_id])
-      render action: 'new', locals: { item: @item }
+      redirect_to new_price_path
     end
   end
 

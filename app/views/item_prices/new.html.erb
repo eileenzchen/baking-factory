@@ -8,7 +8,7 @@
         <p>&nbsp;&nbsp;&nbsp;Current price: <%= number_to_currency(@item.current_price) %></p>
         <p><h6><em>&nbsp;&nbsp;&nbsp;Enter new price</em></h6></p>
 
-        <div class="form-inputs">
+        <div class="controls form-inputs">
           <%= f.input :item_id, as: :hidden, input_html: { value: @item.id } %>
           <%= f.input :price %>
         </div>

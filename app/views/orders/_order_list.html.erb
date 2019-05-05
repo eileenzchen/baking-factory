@@ -12,12 +12,13 @@
     <tbody>
       <% orders.each do |order| %>
         <tr>
-          <td><%= link_to order.date.strftime('%m/%d/%y'), order_path(order) %></td>
-          <td><%= link_to order.customer.name, customer_path(order.customer) %></td>
-          <td><%= link_to order.address.recipient, address_path(order.address) %></td>
-          <td><%= number_to_currency order.grand_total %></td>
+          <td width="100"><%= link_to order.date.strftime('%m/%d/%y'), order_path(order) %></td>
+          <td width="225"><%= link_to order.customer.name, customer_path(order.customer) %></td>
+          <td width="225"><%= link_to order.address.recipient, address_path(order.address) %></td>
+          <td width="100"><%= number_to_currency order.grand_total %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
+  </br>
 <%= will_paginate orders, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  

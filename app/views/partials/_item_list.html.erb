@@ -13,7 +13,7 @@
           <% item1_type = item1.category.downcase %>
           <% item2_type = item2.category.downcase %>
           
-          <% if item1.picture.nil? %>
+          <% if item1.picture.nil?  || item1.picture.empty?%>
             <td width="140"><%= link_to image_tag("img-not-found.png", :size => "130x130"), item_path(item1) %></td>
           <% else %>
             <td width="140"><%= link_to image_tag(item1.picture, :size => "130x130"), item_path(item1) %></td>
@@ -28,19 +28,31 @@
   
           
 
-           <% if logged_in? && (current_user.role?(:customer) || current_user.role?(:admin)) %>
+            <% if logged_in? && current_user.role?(:customer) %>
   
               <%= link_to(add_item_path(item1.id), class: 'btn button tiny radius') do %>
                 &nbsp;Add to Cart&nbsp;
               <% end %>
-
+            <% elsif logged_in? && current_user.role?(:admin) %>
+              <% if item1.active %>
+                
+                <%=link_to('Make inactive', toggle_item_path(item1.id), 
+                        method: :patch, 
+                        class: " btn button tiny radius")%>
+              <% else %>
+                
+                <%=link_to('Make active', toggle_item_path(item1.id), 
+                        method: :patch, 
+                        class: " btn button tiny radius")%>
+      
+              <% end %>
             <% end %>
           </td>
           
 
           <% if item1 != item2 %>
 
-            <% if item2.picture.nil? %>
+            <% if item2.picture.nil?  || item2.picture.empty?%>
               <td width="140"><%= link_to image_tag("img-not-found.png", :size => "130x130"), item_path(item2) %></td>
             <% else %>
               <td width="140"><%= link_to image_tag(item2.picture, :size => "130x130"), item_path(item2) %></td>
@@ -53,13 +65,26 @@
               </br>
               <%= item2.units_per_item %> <%= item2_type == 'bread' ? 'loaf' : item2_type %></br></br>
             
-
-             <% if logged_in? && (current_user.role?(:customer) || current_user.role?(:admin)) %>
-          
+              <% if logged_in? && current_user.role?(:customer) %>
+  
                 <%= link_to(add_item_path(item2.id), class: 'btn button tiny radius') do %>
                   &nbsp;Add to Cart&nbsp;
                 <% end %>
-         
+              <% elsif logged_in? && current_user.role?(:admin) %>
+     
+                <% if item2.active %>
+                  
+                  <%=link_to('Make inactive', toggle_item_path(item2.id), 
+                          method: :patch, 
+                          class: " btn button tiny radius")%>
+                <% else %>
+                  
+                  <%=link_to('Make active', toggle_item_path(item2.id), 
+                          method: :patch, 
+                          class: " btn button tiny radius")%>
+        
+                <% end %>
+    
               <% end %>
             </td>
           <% end %>
