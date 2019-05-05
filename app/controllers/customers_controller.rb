@@ -12,7 +12,7 @@ class CustomersController < ApplicationController
 
   def show
     @previous_orders = @customer.orders.chronological
-    if logged_in? && current_user.role?(:admin) || current_user.role?(:customer)
+    if logged_in? && (current_user.role?(:admin) || current_user.role?(:customer))
       @num_items_in_cart = get_number_of_items
     end
   end
@@ -39,7 +39,6 @@ class CustomersController < ApplicationController
     @user.password_confirmation = @customer.password_confirmation
 
     if !@user.save
-      puts @user.errors.inspect
 
       @customer.valid?
       render action: 'new'

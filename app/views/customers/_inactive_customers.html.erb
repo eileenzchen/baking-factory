@@ -1,10 +1,25 @@
-<% unless @inactive_customers.empty? %>
-  <div class="panel clearfix">
-    <h3>Inactive Customers</h3>
-    <ul>
+<% if @inactive_customers.empty? %>
+  <h4>No active customers at this time.</h4>
+<% else %>
+  <table class="table striped highlight">
+    <thead>
+      <tr>
+        <th >Name</th>
+        <th >Phone</th>
+        <th >Email</th>
+      </tr>
+    </thead>
+    <tbody>
       <% @inactive_customers.each do |customer| %>
-        <li><%= link_to customer.name, customer_path(customer) %></li>
+        <tr>
+          <td><%= link_to customer.name, customer_path(customer) %></td>
+          <td><%= number_to_phone customer.phone %></td>
+          <td><%= mail_to customer.email, customer.email, encode: "javascript"  %></td>
+        </tr>
       <% end %>
-    </ul>
-  </div>
+    </tbody>
+  </table>
+  </br>
+<%= will_paginate @inactive_customers, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
 <% end %>
+<p>&nbsp;</p>

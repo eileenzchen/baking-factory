@@ -189,11 +189,11 @@ table.striped > tbody > tr:nth-child(odd) {
 }
 
 table.striped > tbody > tr:nth-child(even) {
-  background-color: #ffebee;
+  background-color: #FFF9EB;
 }
 
 table.highlight > tbody > tr:hover {
-  background-color: #ffcdd2;
+  background-color: #ffecc1;
 }
 
 td.align_right {
@@ -217,11 +217,15 @@ th.align_center {
 }
 
 .material-icons {
-  color: #5379b6;
+  color: #644933;
 }
 
 a {
-  color: #5379b6;
+  color: #644933;
+}
+
+a:hover {
+  color: #c49a5a;
 }
 
 /****TABS****/

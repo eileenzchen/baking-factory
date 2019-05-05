@@ -26,13 +26,14 @@ Rails.application.routes.draw do
 
   # Routes for main resources
   get 'place_order', to: 'orders#create', as: :place_order
+  patch 'order_items/:id/toggle_shipped', to: 'order_items#toggle_shipped', as: :toggle_shipped
   resources :addresses
   resources :customers
   resources :orders
   resources :items
   resources :order_items
 
-  # Routes for order items and item prices
+  # Routes for item prices
   # get 'item_prices/new', to: 'items#new_price', as: :new_item_price
   # post 'item_prices', to: 'items#create_price', as: :item_prices
   

@@ -41,3 +41,18 @@ $(function() {
      $(this).delay(3700).fadeOut();
   });
 });
+
+// $(function toggle_shipped(id) {
+// 	let $button = $('#toggle-' + id);
+  
+//   if ($button.classList.has('mark-shipped')) {
+//   	$button.classList.remove('mark-shipped');
+//     $button.classList.add('mark-unshipped');
+//   }
+//   else {
+//     $button.classList.remove('mark-unshipped');
+//     $button.classList.add('mark-shipped');
+//   }
+  
+// 	$.patch('toggle_shipped' + id);
+// });

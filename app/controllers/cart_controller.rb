@@ -42,11 +42,7 @@ class CartController < ApplicationController
     @num_items_in_cart = get_number_of_items
   end
 
-  def checkout
-    puts "checkout"
-    puts current_user.inspect
-    puts current_user.customer.inspect
-    
+  def checkout    
     @order = Order.new
     @num_items_in_cart = get_number_of_items
     @items_in_cart = get_list_of_items_in_cart

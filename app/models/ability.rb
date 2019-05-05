@@ -95,6 +95,8 @@ class Ability
 
       # can view address details
       can :show, Address
+
+      can :update, OrderItem
             
     else
       # guests can read items

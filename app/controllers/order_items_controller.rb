@@ -1,12 +1,29 @@
 class OrderItemsController < ApplicationController
   include AppHelpers::Cart
-  before_action :check_login
-  authorize_resource
+  #before_action :check_login
+  #authorize_resource
+
+  def toggle_shipped
+    @order_item = OrderItem.find(params[:id])
+    if @order_item.shipped_on.nil?
+      @order_item.update_attribute(:shipped_on, Date.current)
+    else
+      @order_item.update_attribute(:shipped_on, nil)
+    end
+    if current_user.role?(:admin)
+      redirect_to @order_items
+    else
+
+      redirect_to home_path
+      
+
+    end
+    
+  end
 
   def index
     @shipped = OrderItem.all.shipped.chronological.paginate(page: params[:page]).per_page(10)
-    @unshipped = OrderItem.all.paginate(page: params[:page]).per_page(10)
-   
+    @unshipped = OrderItem.all.unshipped.paginate(page: params[:page]).per_page(10)
   end
   
   def new
@@ -21,15 +38,23 @@ class OrderItemsController < ApplicationController
       flash[:notice] = "Successfully added #{@order_item.quantity} #{@item.name} to cart."
       redirect_to home_path
     else
-      render action: 'new', locals: { order: @order, item: @item }
+      redirect_to home_path
     end
   end
 
   def update
     if @order_item.update(order_item_params)
-      redirect_to @order_item, notice: "Your item was updated in the system."
+      if current_user.role?(:baker)
+        redirect_to home_path, notice: "Your order item was updated in the system."
+      else 
+        redirect_to @order_item
+      end
     else
-      render action: 'edit'
+      if current_user.role?(:baker)
+        redirect_to home_path
+      else
+        render action: 'edit'
+      end
     end
   end
  
@@ -47,7 +72,7 @@ class OrderItemsController < ApplicationController
 
   private
     def order_item_params
-      params.require(:dosage).permit(:order_id, :item_id, :quantity)
+      params.require(:order_item).permit(:order_id, :item_id, :quantity, :shipped_on)
     end
 
 end

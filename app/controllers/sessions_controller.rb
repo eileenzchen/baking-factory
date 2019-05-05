@@ -23,4 +23,6 @@ class SessionsController < ApplicationController
     destroy_cart
     redirect_to home_path, notice: "Logged out!"
   end
+
+  
 end

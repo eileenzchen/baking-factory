@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col s12">
+    <ul class="tabs">
+      <li class="tab col s2"><a class="active" href="#active">Active</a></li>
+      <li class="tab col s2"><a href="#inactive">Inactive</a></li>
+    </ul>
+  </div>
+</div>
+  <div id="active" class="col s12">
+    <%= render :partial => "customers/active_customers" %>
+  </div>
+
+  <div id="inactive" class="col s12">
+    <%= render :partial => "customers/inactive_customers" %>
+  </div>
+
+
+

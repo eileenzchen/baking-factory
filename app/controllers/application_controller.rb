@@ -17,13 +17,13 @@ class ApplicationController < ActionController::Base
   
   def logged_in?
     current_user
-
   end
   helper_method :logged_in?
   
   def check_login
     redirect_to login_path, alert: "You need to log in to view this page." if current_user.nil?  
   end
+
 
 
 end

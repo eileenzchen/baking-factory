@@ -27,7 +27,9 @@ class ItemsController < ApplicationController
     end
     # everyone sees similar items in the sidebar
     @similar_items = Item.for_category(@item.category).alphabetical.to_a
-    @num_items_in_cart = get_number_of_items
+    if logged_in? && (current_user.role?(:admin) || current_user.role?(:customer))
+      @num_items_in_cart = get_number_of_items
+    end
   end
 
   def new_price

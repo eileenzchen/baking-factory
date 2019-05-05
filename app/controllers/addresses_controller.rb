@@ -24,7 +24,7 @@ class AddressesController < ApplicationController
 
   def new
     @address = Address.new
-    if logged_in? && current_user.role?(:admin) || current_user.role?(:customer)
+    if logged_in? && (current_user.role?(:admin) || current_user.role?(:customer))
       @num_items_in_cart = get_number_of_items
     end
   end
@@ -33,7 +33,7 @@ class AddressesController < ApplicationController
   end
 
   def create
-    if logged_in? && current_user.role?(:admin) || current_user.role?(:customer)
+    if logged_in? && (current_user.role?(:admin) || current_user.role?(:customer))
       @num_items_in_cart = get_number_of_items
     end
     @address = Address.new(address_params)

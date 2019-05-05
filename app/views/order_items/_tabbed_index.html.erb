@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col s12">
+    <ul class="tabs">
+      <li class="tab col s2"><a class="active" href="#unshipped">Unshipped</a></li>
+      <li class="tab col s2"><a href="#shipped">Shipped</a></li>
+
+    </ul>
+  </div>
+  <div id="unshipped" class="col s12">
+    <%= render :partial => "order_items/unshipped" %>
+  </div>
+
+  <div id="shipped" class="col s12">
+    <%= render :partial => "order_items/shipped" %>
+  </div>
+
+

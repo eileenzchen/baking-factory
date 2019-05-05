@@ -1,0 +1,8 @@
+<% if @unshipped.empty? %>
+</br>
+  <p><em>There are no unshipped order items at this time.</em></p>
+<% else %>
+  <%= render :partial => "order_items/shipping_list", locals: {order_items: @unshipped} %>  
+<% end %>
+<br />
+<%= will_paginate @unshipped, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
