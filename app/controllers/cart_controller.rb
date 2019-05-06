@@ -10,7 +10,7 @@ class CartController < ApplicationController
   def add_item
     add_item_to_cart(params[:id])
     @item = Item.find(params[:id])
-    redirect_to home_path
+    redirect_back fallback_location: home_path
     flash[:notice] = "#{@item.name} was added to cart."
   end
 

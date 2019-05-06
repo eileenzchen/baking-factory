@@ -23,6 +23,7 @@ class HomeController < ApplicationController
       @shipped = OrderItem.all.shipped.chronological.paginate(page: params[:page]).per_page(10)
       @unshipped = OrderItem.all.unshipped.paginate(page: params[:page]).per_page(10)
     end
+
     #bakers
     if logged_in? && (current_user.role?(:baker) || current_user.role?(:admin))
       @baking_list_bread = create_baking_list_for("Bread")

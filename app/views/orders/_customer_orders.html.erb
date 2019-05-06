@@ -1,0 +1,50 @@
+<% @all_orders.each do |order| %>
+  <div class="row">
+    <div class="col s8">
+      <div class="card">
+        <div class="card-content">
+            <b style="font-size: 20px; display: inline;">Order date: <%=order.date.strftime("%m/%d/%y")%></b>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <% if order.order_items.any?{|oi| oi.shipped_on.nil?} %>
+              <b style="font-size: 20px;">Arriving today by 4pm</b>
+            <%else%>
+              <b style="font-size: 20px;">Delivered</b>
+            <%end%>
+          
+            <%= render :partial => 'order_items', locals: {items: order.items, order_items: order.order_items} %>
+
+            
+          
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col s4">
+      <div class="card">
+        <div class="card-content">  
+          
+          <b>Total: </b><%= number_to_currency order.grand_total %>
+          </br>
+          <b>Recipient: </b><%= order.address.recipient %></br>
+          <% if order.payment_receipt.nil? %>
+            <em>Order has not been paid.</em>
+          <%else%>
+            <em>Order has been paid.</em>
+          <%end%></br></br>
+          
+          <%= link_to "Order details", order_path(order), class: "btn" %></br>
+          <p style="font-size: 7px;">&nbsp;</p>
+          <div class="btn">Track order</div></br>
+          <p style="font-size: 7px;">&nbsp;</p>
+          <% if !order.order_items.any?{|oi| !oi.shipped_on.nil?} %>
+            <%= link_to(order_path(order), method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' }) do %>
+              <div class="btn">Cancel order</div>
+            <% end %>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

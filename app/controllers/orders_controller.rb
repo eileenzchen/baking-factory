@@ -15,6 +15,7 @@ class OrdersController < ApplicationController
     if logged_in? && (current_user.role?(:admin) || current_user.role?(:customer))
       @num_items_in_cart = get_number_of_items
     end
+    
   end
 
   def show
@@ -42,9 +43,6 @@ class OrdersController < ApplicationController
       @order.customer_id = current_user.customer.id
     end
     @order.grand_total = subtotal + shipping_cost
-
-    
-  
     
     if @order.save
       save_each_item_in_cart(@order)
@@ -74,9 +72,11 @@ class OrdersController < ApplicationController
   end
   
   def destroy
-    @order.destroy
-    @cart = destroy_cart
-    redirect_to orders_url, notice: "#{@order.name} was removed from the system."
+    if @order.destroy
+      redirect_to orders_url, notice: "Order was removed from the system."
+    else 
+      redirect_to orders_url, notice: "Order cannot be cancelled."
+    end
   end
 
   private

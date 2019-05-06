@@ -82,7 +82,7 @@ class CustomersController < ApplicationController
   def destroy
     if @customer.destroy
     else
-      @orders = @owner.orders.chronological.to_a
+      @previous_orders = @customer.orders.chronological.to_a
       render action: 'show'
     end
   end

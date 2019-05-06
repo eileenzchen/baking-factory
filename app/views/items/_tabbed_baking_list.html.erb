@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col s12">
+    <ul class="tabs">
+      <li class="tab col s2"><a href="#bread">Bread</a></li>
+      <li class="tab col s2"><a href="#muffins">Muffins</a></li>
+      <li class="tab col s2"><a href="#pastries">Pastries</a></li>
+    </ul>
+
+  </div>
+</div>
+
+  <div id="bread" class="col s12">
+    <%= render :partial => "items/bread_baking" %>
+  </div>
+
+  <div id="muffins" class="col s12">
+    <%= render :partial => "items/muffins_baking" %>
+  </div>
+
+  <div id="pastries" class="col s12">
+    <%= render :partial => "items/pastries_baking" %>
+  </div>
+

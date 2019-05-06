@@ -1,5 +1,13 @@
+<% if logged_in? && current_user.role?(:admin) %>
+  <%= render partial: "partials/form2_structure", locals: {object: @customer, 
+                                                          type_of_form: "New Customer",
+                                                          fields1: "customer_fields",
+                                                          section_2: "User Account",
+                                                          fields2: "user_fields"} %>
+<% else %>
 <%= render partial: "partials/form2_structure", locals: {object: @customer, 
                                                         type_of_form: "New Customer",
-                                                        fields1: "customer_fields",
+                                                        fields1: "customer_fields_for_customer",
                                                         section_2: "User Account",
                                                         fields2: "user_fields"} %>
+<% end %>

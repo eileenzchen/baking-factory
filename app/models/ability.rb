@@ -52,6 +52,8 @@ class Ability
 
       can :add_to_cart, Order
 
+      can :destroy, Order
+
       # can create an address
       can :create, Address
 
@@ -102,6 +104,7 @@ class Ability
       # guests can read items
       can :index, Item
       can :show, Item
+      
 
       # guests can become customers
       can :create, Customer

@@ -1,22 +1,47 @@
-<h4>Order Details</h4>
+<h5>Order Details</h5>
+<h6><i>Thanks for being a Baking Factory customer since <%= @order.customer.created_at.year %>.</i></h6>
 
-<p>
-  <b>Date</b>: <%= @order.date.strftime('%B %e, %Y') %>
-</p>
-
-<p>
-  <b>Customer</b>: <%= link_to @order.customer.name, customer_path(@order.customer) %>
-</p>
-
-<p>
-  <b>Recipient</b>: <%= link_to @order.address.recipient, address_path(@order.address) %>
-</p>
-
-<p>
-  <b>Total Cost</b>: <%= number_to_currency @order.grand_total %>
-</p>
+<div class="card">
+  <div class="card-content">
 
 
-<p>
-  <em>Thanks for being a Baking Factory customer since <%= @order.customer.created_at.year %>.</em>
-</p>
+    <div class="row">
+      <div class="col s4">
+        <b style="font-size:16px;">Shipping Address</b></br>
+        <p style="font-size: 3px;">&nbsp;</p>
+        <b><%= @order.address.recipient %></b><br/>
+
+        <%= @order.address.street_1 %><br/>
+        <% unless @order.address.street_2.blank? %>
+          <%= @order.address.street_2 %><br/>
+        <% end %>
+        <%= @order.address.city %>, <%= @order.address.state %> <%= @order.address.zip %>
+      </div> 
+
+      <div class="col s4">
+
+        <b style="font-size:16px;">Order Date:</b>&nbsp;&nbsp;<%= @order.date.strftime("%m/%d/%y") %><br />
+
+        <%if current_user.role?(:admin) %>
+          <b>Customer:</b><br/>
+            <%= @order.customer.proper_name %><br/>
+        <% end %>
+        
+        <b style="font-size:16px;">Total:&nbsp;&nbsp;</b><%= number_to_currency(@order.grand_total) %><br /><br />
+    
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+<div class="card">
+  <div class="card-content">
+
+
+    <%= render :partial => 'order_items', locals: {items: @order.items, order_items: @order.order_items} %>
+
+
+
+  </div>
+</div>

@@ -1,17 +1,43 @@
-<h4><%= @customer.proper_name %></h4>
+<div class="card">
+  <div class="card-content">
 
-<p>
-  <b>Phone</b>: <%= number_to_phone @customer.phone %>
-</p>
+    <span class="card-title" style="display: inline">My Account</span>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  
+        <%= link_to edit_customer_path(@customer) do %>
+          <i class="material-icons">edit</i>
+        <% end %> 
+      </br></br>
+    <div class="row">
+      <div class="controls col s7">
+        <b style="font-size: 20px;"><%= best_in_place @customer, :first_name, as: :input %> 
+        <%= best_in_place @customer, :last_name, as: :input %></b>
+        <p style="font-size: 3px;"></p>
+        <p>
+          <b>Phone</b>: <%= best_in_place @customer, :phone, as: :input, display_with: :number_to_phone %>
+        </p>
+        
+        <p>
+          <b>Email</b>: <%= best_in_place @customer, :email, as: :input %>
+        </p>
+        
+        <% if current_user.role?(:admin)%>
+          <p>
+            <b>Active</b>: <%= best_in_place @customer.active ? 'Yes' : 'No' %>
+          </p>
+        <%end%>
+        
+        <p>
+          <em>A Baking Factory customer since <%= @customer.created_at.year %>.</em>
+        </p>
+        </br>
 
-<p>
-  <b>Email</b>: <%= mail_to @customer.email, @customer.email, encode: "javascript" %>
-</p>
-
-<p>
-  <b>Active</b>: <%= @customer.active ? 'Yes' : 'No' %>
-</p>
-
-<p>
-  <em>A Baking Factory customer since <%= @customer.created_at.year %>.</em>
-</p>
+        <%= link_to(addresses_path(@customer.id), class: 'btn button tiny radius') do %>
+          My addresses
+        <% end %>
+      
+      </div>
+      
+    </div>
+  </div>
+</div>

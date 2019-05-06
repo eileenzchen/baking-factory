@@ -4,9 +4,11 @@
     </br>
     
     <tbody>
-      <% items.each_slice(2) do |item| %>
-        <% item1 = item.first %>
-        <% item2 = item.last %>
+      <% order_items.each_slice(2) do |oi| %>
+        <% oi1 = oi.first %>
+        <% oi2 = oi.last %>
+        <% item1 = oi.first.item %>
+        <% item2 = oi.last.item %>
 
         
 
@@ -17,9 +19,9 @@
           
           <% if !item1.price_on_date(Date.current).nil? %>
             <% if item1.picture.nil?  || item1.picture.empty?%>
-              <td width="140"><%= link_to image_tag("img-not-found.png", :size => "130x130"), item_path(item1) %></td>
+              <td width="160"><%= link_to image_tag("img-not-found.png", :size => "150x150"), item_path(item1) %></td>
             <% else %>
-              <td width="140"><%= link_to image_tag(item1.picture, :size => "130x130"), item_path(item1) %></td>
+              <td width="160"><%= link_to image_tag(item1.picture, :size => "150x150"), item_path(item1) %></td>
             <% end %>
 
             <td style="vertical-align: top; float: left;"><%= link_to item1.name, item_path(item1), class: "link align-left"  %>
@@ -27,8 +29,11 @@
               <%= number_to_currency item1.current_price, class: "align-left" %>
             
               </br>
-              <%= item1.units_per_item %> <%= item1_type == 'bread' ? 'loaf' : item1_type %></br></br>
+              <%= item1.units_per_item %> <%= item1_type == 'bread' ? 'loaf' : item1_type %></br>
     
+              <% if current_page?(controller: 'orders') %>
+                  Qty: <%= oi1.quantity %> 
+              <%end%></br></br>
               
 
               <% if logged_in? && current_user.role?(:customer) %>
@@ -61,9 +66,9 @@
           <% if item1 != item2 && !item2.price_on_date(Date.current).nil? %>
 
             <% if item2.picture.nil?  || item2.picture.empty?%>
-              <td width="140"><%= link_to image_tag("img-not-found.png", :size => "130x130"), item_path(item2) %></td>
+              <td width="160"><%= link_to image_tag("img-not-found.png", :size => "150x150"), item_path(item2) %></td>
             <% else %>
-              <td width="140"><%= link_to image_tag(item2.picture, :size => "130x130"), item_path(item2) %></td>
+              <td width="160"><%= link_to image_tag(item2.picture, :size => "150x150"), item_path(item2) %></td>
             <% end %>
 
             <td style="vertical-align: top"><%= link_to item2.name, item_path(item2), class: "link align-left"  %>
@@ -71,7 +76,11 @@
               <%= number_to_currency item2.current_price, class: "align-left" %>
             
               </br>
-              <%= item2.units_per_item %> <%= item2_type == 'bread' ? 'loaf' : item2_type %></br></br>
+              <%= item2.units_per_item %> <%= item2_type == 'bread' ? 'loaf' : item2_type %></br>
+
+              <% if current_page?(controller: 'orders') %>
+                Qty: <%= oi2.quantity %> 
+              <%end%></br></br>
             
               <% if logged_in? && current_user.role?(:customer) %>
   

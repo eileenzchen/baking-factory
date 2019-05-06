@@ -1,4 +1,8 @@
-<%= render partial: "partials/index_structure", locals: {model_name: "item", 
-                                                         primary: "all_orders", 
-                                                         secondary: nil,
-                                                         sidebar: nil} %>
+<% if current_user.role?(:customer) %>
+  <%= render partial: "customer_orders" %>
+<%else%>
+  <%= render partial: "partials/index_structure", locals: {model_name: "item", 
+                                                          primary: "all_orders", 
+                                                          secondary: nil,
+                                                          sidebar: nil} %>
+<% end %>

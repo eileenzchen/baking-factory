@@ -23,6 +23,9 @@ class OrderItemsController < ApplicationController
   def index
     @shipped = OrderItem.all.shipped.chronological.paginate(page: params[:page]).per_page(10)
     @unshipped = OrderItem.all.unshipped.paginate(page: params[:page]).per_page(10)
+    if logged_in? && current_user.role?(:admin) || current_user.role?(:customer)
+      @num_items_in_cart = get_number_of_items
+    end
   end
   
   def new

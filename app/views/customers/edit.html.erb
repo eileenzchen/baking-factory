@@ -1,3 +1,9 @@
+<% if logged_in? && current_user.role?(:admin) %>
 <%= render partial: "partials/form_structure", locals: {object: @customer, 
                                                         type_of_form: "Edit Customer",
                                                         fields: "customer_fields"} %>
+<% else %>
+<%= render partial: "partials/form_structure", locals: {object: @customer, 
+                                                        type_of_form: "Edit Info",
+                                                        fields: "customer_fields_for_customer"} %>
+<% end %>

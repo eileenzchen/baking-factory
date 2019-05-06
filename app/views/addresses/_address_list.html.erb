@@ -5,7 +5,9 @@
 <table class="table striped highlight">
   <thead>
     <tr>
-      <th >Customer</th>
+      <%if current_user.role?(:admin)%>
+        <th >Customer</th>
+      <%end%>
       <th>Recipient</th>
       <th>Address</th>
       <th >Billing?</th>
@@ -15,7 +17,9 @@
   <tbody>
     <% addresses.each do |address| %>
       <tr>
-        <td><%= link_to address.customer.proper_name, customer_path(address.customer) %></td>
+        <%if current_user.role?(:admin)%>
+          <td><%= link_to address.customer.proper_name, customer_path(address.customer) %></td>
+        <%end%>
         <td><%= address.recipient %></td>
         <td>
           <%= render :partial => "partials/address_info", locals: {address: address} %>

@@ -1,20 +1,38 @@
-<% unless previous_orders.empty? %>
-  <div class="panel clearfix">
-    <h4>Order History</h4>
-    <table striped highlight>
-      <thead>
-        <tr>
-          <th width="120">Date</th>
-          <th width="100">Amount</th>
-        </tr>
-      </thead>
-      <tbody>
-      <% previous_orders.each do |order| %>
-        <tr>
-          <td><%= link_to order.date.strftime('%m/%d/%y'), order_path(order) %></td>
-          <td><%= number_to_currency order.grand_total %></td>
-        </tr>
-      <% end %>
-    </table>
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">Order History</span>
+    <% if @previous_orders.empty? %>
+      <p>No orders at this time</p>
+    <% elsif @previous_orders.length > 4 %>
+      <table class="striped highlight scroll">
+        <thead>
+          <th>Date</th>
+          <th>Amount</th>
+        </thead>
+        <tbody>
+          <% for order in @previous_orders %>
+            <tr>
+              <td><%= link_to order.date.strftime("%m/%d/%y"), order_path(order) %></td>
+              <td><%= number_to_currency(order.grand_total) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <table class="striped highlight">
+        <thead>
+          <th>Date</th>
+          <th>Amount</th>
+        </thead>
+        <tbody>
+          <% for order in @previous_orders %>
+            <tr>
+              <td><%= link_to order.date.strftime("%m/%d/%y"), order_path(order) %></td>
+              <td><%= number_to_currency(order.grand_total) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
   </div>
-<% end %>
+</div>

@@ -7,7 +7,7 @@
 
     <ul class="right hide-on-med-and-down">
       <li><%= link_to 'MY ACCOUNT', customer_path(current_user.customer), :class => current_class?(customer_path(current_user.customer))  %></li>
-      <li><%= link_to 'MY ORDERS', orders_path, :class => current_class?(orders_path) %></li>
+      <li><%= link_to 'MY ORDERS', orders_path(current_user.customer), :class => current_class?(orders_path) %></li>
     
       <% if can? :create, Order %>
 

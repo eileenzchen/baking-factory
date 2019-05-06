@@ -29,6 +29,7 @@ class ItemsController < ApplicationController
     @pastries = Item.active.for_category('pastries').alphabetical.paginate(:page => params[:page]).per_page(10)
     # get a list of any inactive items for sidebar
     @inactive_items = Item.inactive.alphabetical.paginate(:page => params[:page]).per_page(10)
+
   end
 
   def show
@@ -86,8 +87,11 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item.destroy
-    redirect_to items_url, notice: "#{@item.name} was removed from the system."
+    if @item.destroy
+      redirect_to items_url, notice: "#{@item.name} was removed from the system."
+    else
+      redirect_back fallback_location: home_path
+    end
   end
 
   private

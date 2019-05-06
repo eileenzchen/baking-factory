@@ -14,7 +14,9 @@
 //= require rails-ujs
 //= require materialize-sprockets
 //= require materialize-form
+//= require best_in_place
 //= require_tree .
+
 
 // @import "materialize";
 // @import "https://fonts.googleapis.com/icon?family=Material+Icons";
@@ -40,6 +42,23 @@ $(function() {
   $('.alert-box').fadeIn('normal', function() {
      $(this).delay(3700).fadeOut();
   });
+});
+
+// Best in place functionality
+$(document).ready(function() {
+  jQuery(".best_in_place").best_in_place();
+});
+
+// Search submit on enter
+$(document).ready(function() {
+  function submitForm() {
+    document.getElementById("search").submit();
+  }
+  document.onkeydown = function () {
+    if (window.event.keyCode == '13') {
+        submitForm();
+    }
+  }
 });
 
 // $(function toggle_shipped(id) {
