@@ -26,20 +26,22 @@
           
           <b>Total: </b><%= number_to_currency order.grand_total %>
           </br>
-          <b>Recipient: </b><%= order.address.recipient %></br>
+          <b>Recipient: </b><%= order.address.recipient %></br></br>
           <% if order.payment_receipt.nil? %>
             <em>Order has not been paid.</em>
           <%else%>
             <em>Order has been paid.</em>
           <%end%></br></br>
           
-          <%= link_to "Order details", order_path(order), class: "btn" %></br>
+          <%= link_to "Order details", order_path(order), class: "btn", style: "width: 180px;" %></br>
           <p style="font-size: 7px;">&nbsp;</p>
-          <div class="btn">Track order</div></br>
+
+          <div class="btn" style="width: 180px;">Track order</div></br>
           <p style="font-size: 7px;">&nbsp;</p>
+
           <% if !order.order_items.any?{|oi| !oi.shipped_on.nil?} %>
             <%= link_to(order_path(order), method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' }) do %>
-              <div class="btn">Cancel order</div>
+              <div class="btn" style="width: 180px;">Cancel order</div>
             <% end %>
           <% end %>
 

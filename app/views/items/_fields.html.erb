@@ -1,8 +1,10 @@
 <% errs = @item.errors.to_a if !@item.nil? %>
 </br>
-<% errs.each do |e| %>
-    &nbsp;&nbsp;&nbsp;&nbsp;<em><%= e %></em>
-    </br>
+<% if errs.present? %>
+    <% errs.each do |e| %>
+        &nbsp;&nbsp;&nbsp;&nbsp;<em><%= e %></em>
+        </br>
+    <% end %>
 <% end %>
 </br>
 <%= f.input :name, as: :string, include_blank: true, input_html: {class: "avg"}, label_html: {class: "active"} %>

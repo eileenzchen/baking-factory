@@ -26,7 +26,7 @@
             <td width="130"><%= link_to image_tag(item.picture, :size => "100x100"), item_path(item) %></td>
           <% end %>
 
-          <td style="vertical-align: top" width="450"><%= link_to item.name, item_path(item), class: "link align-left"  %>
+          <td style="vertical-align: top" width="450"><%= link_to item.name, item_path(item), class: "align-left"  %>
             </br>
             <%= number_to_currency item.current_price, class: "align-left" %>
             </br>

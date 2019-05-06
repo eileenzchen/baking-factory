@@ -1,8 +1,10 @@
 <% errs = @customer.errors.to_a if !@customer.nil? %>
 </br>
-<% errs.each do |e| %>
-    &nbsp;&nbsp;&nbsp;&nbsp;<em><%= e %></em>
-    </br>
+<% if errs.present? %>
+    <% errs.each do |e| %>
+        &nbsp;&nbsp;&nbsp;&nbsp;<em><%= e %></em>
+        </br>
+    <% end %>
 <% end %>
 </br>
 <%= f.input :first_name, label_html: {class: "active"} %>

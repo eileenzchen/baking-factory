@@ -22,7 +22,7 @@
           <td width="120"><%= oi.order.created_at.strftime("%m/%d/%y") %></td>
 
           
-          <td width="215"><%= link_to item.name, item_path(item), class:"link" %></td>
+          <td width="215"><%= link_to item.name, item_path(item)%></td>
           <td width="100"><%= oi.quantity %></td>
           <td width="100"><%= number_to_currency item.price_on_date(oi.created_at) %></td>
           <td width="100"><%= number_to_currency oi.subtotal(oi.created_at) %></td>

@@ -1,8 +1,10 @@
 <% errs = @address.errors.to_a if !@address.nil? %>
 </br>
-<% errs.each do |e| %>
-    &nbsp;&nbsp;&nbsp;&nbsp;<em><%= e %></em>
-    </br>
+<% if errs.present?  %>
+    <% errs.each do |e| %>
+        &nbsp;&nbsp;&nbsp;&nbsp;<em><%= e %></em>
+        </br>
+    <% end %>
 <% end %>
 </br>
 <% if logged_in? && current_user.role?(:admin) %>
@@ -15,4 +17,6 @@
 <%= f.input :state, collection: Address::STATES_LIST, include_blank: true, input_html: {class: "active"} %>
 <%= f.input :zip, input_html: {class: "avg"}, label_html: {class: "active"} %>
 <%= f.input :is_billing, label: 'Billing address? ' %>
-<%= f.input :active %>
+<% if logged_in? && current_user.role?(:admin) %>
+    <%= f.input :active %>
+<% end %>

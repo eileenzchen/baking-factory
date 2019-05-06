@@ -54,8 +54,9 @@ class CustomersController < ApplicationController
     @user.password = @customer.password
     @user.password_confirmation = @customer.password_confirmation
 
-    if !@user.save
+    
 
+    if !@user.save
       @customer.valid?
       render action: 'new'
     else

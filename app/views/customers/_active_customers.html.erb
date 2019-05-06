@@ -4,17 +4,18 @@
   <table class="table striped highlight">
     <thead>
       <tr>
-        <th >Name</th>
-        <th >Phone</th>
-        <th >Email</th>
+        <th width="225">Name</th>
+        <th width="225">Phone</th>
+        <th width="300">Email</th>
+        <th width="200"></th>
       </tr>
     </thead>
     <tbody>
       <% @active_customers.each do |customer| %>
         <tr>
-          <td><%= link_to customer.name, customer_path(customer) %></td>
-          <td><%= number_to_phone customer.phone %></td>
-          <td><%= mail_to customer.email, customer.email, encode: "javascript"  %></td>
+          <td width="225"><%= link_to customer.proper_name, customer_path(customer) %></td>
+          <td width="225"><%= number_to_phone customer.phone %></td>
+          <td width="300"><%= mail_to customer.email, customer.email, encode: "javascript"  %></td>
           <% if logged_in? && current_user.role?(:admin) %>
             <td width="200">
              

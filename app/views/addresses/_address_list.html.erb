@@ -1,7 +1,12 @@
 <% if addresses.empty? %>
   <p><em>There are no <%= state %> addresses at this time.</em></p>
 <% else %>
-<h4><%= state.capitalize %> Addresses</h4>
+
+<%if current_user.role?(:admin)%>
+  <h5><%= state.capitalize %> Addresses</h5>
+<%else%>
+  <h5>Your Addresses</h5>
+<%end%>
 <table class="table striped highlight">
   <thead>
     <tr>
@@ -36,6 +41,14 @@
     <% end %>
   </tbody>
 </table>
+
+</br>
+<% if current_user.role?(:customer) %>
+<%= link_to(new_address_path, class: 'btn button tiny radius') do %>
+  Add a new address</br></br>
+<% end %>
+<% end %>
+
 <%= will_paginate addresses, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
 <% end %>
 <p>&nbsp;</p>

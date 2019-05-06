@@ -1,8 +1,10 @@
 <% errs = @user.errors.to_a if !@user.nil? %>
 </br>
-<% errs.each do |e| %>
-    &nbsp;&nbsp;&nbsp;&nbsp;<em><%= e %></em>
-    </br>
+<% if errs.present? %>
+    <% errs.each do |e| %>
+        &nbsp;&nbsp;&nbsp;&nbsp;<em><%= e %></em>
+        </br>
+    <% end %>
 <% end %>
 </br>
 <%= f.input :username, input_html: { class: 'avg'}, label_html: { class: 'active' } %>

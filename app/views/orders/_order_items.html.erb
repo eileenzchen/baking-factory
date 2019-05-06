@@ -24,7 +24,7 @@
               <td width="160"><%= link_to image_tag(item1.picture, :size => "150x150"), item_path(item1) %></td>
             <% end %>
 
-            <td style="vertical-align: top; float: left;"><%= link_to item1.name, item_path(item1), class: "link align-left"  %>
+            <td style="vertical-align: top; float: left;"><%= link_to item1.name, item_path(item1), class: "align-left"  %>
               </br>
               <%= number_to_currency item1.current_price, class: "align-left" %>
             
@@ -39,7 +39,7 @@
               <% if logged_in? && current_user.role?(:customer) %>
     
                 <%= link_to(add_item_path(item1.id), class: 'btn button tiny radius') do %>
-                  <% if current_page?(controller: 'orders') %>
+                  <% if current_page?(orders_path(current_user.customer.id)) || current_page?(order_path(oi1.order)) %>
                     Buy again
                   <%else%>
                     Add to cart
@@ -71,7 +71,7 @@
               <td width="160"><%= link_to image_tag(item2.picture, :size => "150x150"), item_path(item2) %></td>
             <% end %>
 
-            <td style="vertical-align: top"><%= link_to item2.name, item_path(item2), class: "link align-left"  %>
+            <td style="vertical-align: top"><%= link_to item2.name, item_path(item2), class: "align-left"  %>
               </br>
               <%= number_to_currency item2.current_price, class: "align-left" %>
             
@@ -85,7 +85,7 @@
               <% if logged_in? && current_user.role?(:customer) %>
   
                 <%= link_to(add_item_path(item2.id), class: 'btn button tiny radius') do %>
-                  <% if current_page?(controller: 'orders') %>
+                  <% if current_page?(orders_path(current_user.customer.id)) || current_page?(order_path(oi1.order)) %>
                     Buy again
                   <%else%>
                     Add to cart
