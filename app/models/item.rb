@@ -30,6 +30,7 @@ class Item < ApplicationRecord
   # validates_inclusion_of :category, in: CATEGORIES.to_h.values, message: "is not an option"
 
   # Other methods
+
   def current_price
     curr = self.item_prices.current.first
     if curr.nil?

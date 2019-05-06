@@ -16,6 +16,7 @@
 //= require materialize-form
 //= require best_in_place
 //= require Chart.bundle
+//= require highcharts
 //= require chartkick
 //= require_tree .
 
