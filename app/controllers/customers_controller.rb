@@ -57,8 +57,6 @@ class CustomersController < ApplicationController
     @user.password = @customer.password
     @user.password_confirmation = @customer.password_confirmation
 
-    
-
     if !@user.save
       @customer.valid?
       render action: 'new'
@@ -66,7 +64,11 @@ class CustomersController < ApplicationController
       @customer.user_id = @user.id
       if @customer.save
         flash[:notice] = "Successfully created #{@customer.proper_name}."
-        redirect_to login_path
+        if logged_in? && current_user.role?(:admin)
+          redirect_to customers_path
+        else
+          redirect_to login_path
+        end
       
       else
         render action: 'new'

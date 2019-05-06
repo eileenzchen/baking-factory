@@ -10,7 +10,13 @@ class OrdersController < ApplicationController
     if current_user.role?(:customer)
       @all_orders = current_user.customer.orders.chronological.paginate(page: params[:page]).per_page(10)
     else
-      @all_orders = Order.all.chronological.paginate(page: params[:page]).per_page(10)
+      puts "helllloooooo"
+      @all_orders = Order.all.chronological
+      @pending_orders = Order.not_shipped
+      @past_orders = (@all_orders - @pending_orders)
+      @all_orders = @all_orders.paginate(page: params[:page]).per_page(10)
+      @pending_orders = @pending_orders.paginate(page: params[:page]).per_page(10)
+      @past_orders = @past_orders.paginate(:page => params[:page], :per_page => 10)
     end
     if logged_in? && (current_user.role?(:admin) || current_user.role?(:customer))
       @num_items_in_cart = get_number_of_items

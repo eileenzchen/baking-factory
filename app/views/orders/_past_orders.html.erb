@@ -1,0 +1,6 @@
+<% if @past_orders.empty? %>
+  <p><em>There are no orders at this time.</em></p>
+<% else %>
+  <%= render :partial => "order_list", locals: {status: 'Past', orders: @past_orders} %>  
+<% end %>
+<br />

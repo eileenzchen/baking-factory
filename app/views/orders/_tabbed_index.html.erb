@@ -1,0 +1,26 @@
+<% if current_user.role?(:admin) %>
+  <h5 style="padding-left: 11px;">Orders</h5>
+<%end%>
+<div class="row" style="padding-left:16px;">
+  <div class="col s12">
+    <ul class="tabs">
+      <li class="tab col s2"><a class="active" href="#all">All</a></li>
+      <li class="tab col s2"><a href="#pending">Pending</a></li>
+      <li class="tab col s2"><a href="#past">Past</a></li>
+    </ul>
+
+  </div>
+</div>
+  <div id="all" class="col s12">
+    <%= render :partial => "all_orders" %>
+  </div>
+
+  <div id="pending" class="col s12">
+    <%= render :partial => "pending_orders" %>
+  </div>
+
+  <div id="past" class="col s12">
+    <%= render :partial => "past_orders" %>
+  </div>
+
+

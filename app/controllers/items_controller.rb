@@ -29,6 +29,9 @@ class ItemsController < ApplicationController
     @pastries = Item.active.for_category('pastries').alphabetical.paginate(:page => params[:page]).per_page(10)
     # get a list of any inactive items for sidebar
     @inactive_items = Item.inactive.alphabetical.paginate(:page => params[:page]).per_page(10)
+    if logged_in? && (current_user.role?(:admin) || current_user.role?(:customer))
+      @num_items_in_cart = get_number_of_items
+    end
 
   end
 

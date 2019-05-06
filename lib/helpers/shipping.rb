@@ -21,5 +21,7 @@ module AppHelpers
       extra = (total_weight - allowed).to_i
       increment = extra * charge
     end  
+
+
   end
 end

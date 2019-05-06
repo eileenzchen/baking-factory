@@ -15,7 +15,8 @@
       <th>Recipient</th>
       <th>Address</th>
       <th >Billing?</th>
-      <th >&nbsp;</th>
+      <th width="100px">&nbsp;</th>
+      <th width="100px">&nbsp;</th>
     </tr>
   </thead>
   <tbody>
@@ -29,14 +30,23 @@
           <%= render :partial => "partials/address_info", locals: {address: address} %>
         </td>
         <td align="center"><%= address.is_billing ? "Yes" : "No" %></td>      
-        <td>
+        <td width="100px">
         <% if can? :edit, address %>
           <%= link_to edit_address_path(address) do %>
             <i class="material-icons">edit</i>
           <% end %> 
         <% end %>
+        
+        </td>
+        <td width="100px">
+        <% if can? :delete, address %>
+          <%= link_to(address_path(address), method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' }) do %>
+            <i class="material-icons">delete</i>
+          <% end %>
+        <% end %>
         </td>
       </tr>
+      
     <% end %>
   </tbody>
 </table>

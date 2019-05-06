@@ -6,8 +6,10 @@
     <% end %>
     &nbsp;&nbsp;
   
-  <%= link_to(eval("edit_#{model_name}_path(object)"), class: 'waves-effect waves-light btn') do %>
-      &nbsp;<%= "Edit #{opt}" %>
+  <% if controller.respond_to?(:edit) && !current_page?(order_path(object)) %>
+    <%= link_to(eval("edit_#{model_name}_path(object)"), class: 'waves-effect waves-light btn') do %>
+        &nbsp;<%= "Edit #{opt}" %>
+    <% end %>
   <% end %>
   &nbsp;&nbsp;
   

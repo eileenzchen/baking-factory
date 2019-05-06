@@ -60,6 +60,19 @@ class AddressesController < ApplicationController
     end
   end
 
+  def destroy
+    @address = Address.find(params[:id])
+    if @address.destroy
+      flash[:notice] = "Successfully deleted address."
+      redirect_to addresses_path
+    else
+      flash[:notice] = "Cannot delete address as it has been used. Address was made inactive."
+      redirect_to addresses_path
+    end
+    
+    
+  end
+
 
   private
   def set_address
