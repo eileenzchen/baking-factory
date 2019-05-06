@@ -36,7 +36,7 @@
 			<div class="card-content">
 				<span class="card-title">Customers</span>
 
-				<%= pie_chart Customer.joins(:orders).group(:customer_id).limit(10).count,
+				<%= pie_chart Customer.joins(:orders, :user).group(:username).select(:first_name).limit(10).count,
 					adapter: "highcharts",
 					title: "Top 10 Customers",
 					colors: ['brown'],
