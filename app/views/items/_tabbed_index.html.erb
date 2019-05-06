@@ -1,7 +1,7 @@
 <% if logged_in? && current_user.role?(:admin) %>
   <%= render :partial => "partials/title_with_search", locals: {title: "Items"} %>
 <% else %>
-  <%= render :partial => "partials/title_with_search", locals: {title: "Our Products"} %>
+  <%= render :partial => "partials/title_with_search", locals: {title: "Our products"} %>
 <% end %>
 <div class="row" style="padding-left:16px;">
   <div class="col s12">

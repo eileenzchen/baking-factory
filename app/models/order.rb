@@ -25,6 +25,7 @@ class Order < ApplicationRecord
   def self.not_shipped
     # joins(:order_items).where("order_items.shipped_on IS NULL").to_a.uniq
     joins(:order_items).where("order_items.shipped_on IS NULL").distinct
+
   end
 
   # Other methods
@@ -95,6 +96,9 @@ class Order < ApplicationRecord
   def credit_card_number_is_valid
     return false if self.expiration_year.nil? || self.expiration_month.nil?
     if self.credit_card_number.nil? || credit_card.type.nil?
+      puts "32842375y2i35y2i3uhrkenwlgjf"
+      puts self.credit_card_number
+      puts self.credit_card_type
       errors.add(:credit_card_number, "is not valid")
       return false
     end

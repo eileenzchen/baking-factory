@@ -1,0 +1,37 @@
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">Your recent order</span>
+    <table>
+    <% @recent_order.order_items.each do |oi| %>
+     <%puts @recent_order.order_items%>
+      <% item1 = oi.item %>
+      <% item1_type = oi.item.category %>
+      <tr>
+      <% if !item1.price_on_date(Date.current).nil? %>
+        <% if item1.picture_url.nil?  || item1.picture_url.empty?%>
+          <td width="120" style="vertical-align: top;"><%= link_to image_tag("img-not-found.png", :size => "100x100"), item_path(item1) %></td>
+        <% else %>
+          <td width="120" style="vertical-align: top;"><div class="crop"><%= link_to image_tag(item1.picture_url, :size => "80x80"), item_path(item1) %></td></div>
+        <% end %>
+
+        <td width="150" style="vertical-align: top; float: left;"><%= link_to item1.name, item_path(item1) %>
+          </br>
+          <%= number_to_currency item1.current_price, class: "align-left" %>
+        
+          </br>
+          <%= item1.units_per_item %> <%= item1_type == 'bread' ? 'loaf' : item1_type %></br>
+          Qty: <%= oi.quantity %> </br></br>
+        
+          <%= link_to(add_item_path(item1.id), class: 'btn button tiny radius') do %>
+            
+              Buy again
+        
+          <% end %>
+       
+        </td>
+      <% end %>
+      </tr>
+    <%end%>
+    </table>
+  </div>
+</div>

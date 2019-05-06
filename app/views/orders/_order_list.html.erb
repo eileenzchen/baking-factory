@@ -1,21 +1,28 @@
 
-  <h5><%= status %> Orders</h5>
   <table class="table striped highlight">
     <thead>
       <tr>
         <th width="100">Date</th>
-        <th width="225">Customer</th>
-        <th width="225">Recipient</th>
+        <th width="200">Customer</th>
+        <th width="200">Recipient</th>
         <th width="100">Cost</th>
+        <th width="200">Items</th>
       </tr>
     </thead>
     <tbody>
       <% orders.each do |order| %>
         <tr>
           <td width="100"><%= link_to order.date.strftime('%m/%d/%y'), order_path(order) %></td>
-          <td width="225"><%= link_to order.customer.name, customer_path(order.customer) %></td>
-          <td width="225"><%= link_to order.address.recipient, address_path(order.address) %></td>
+          <td width="200"><%= link_to order.customer.name, customer_path(order.customer) %></td>
+          <td width="200"><%= link_to order.address.recipient, address_path(order.address) %></td>
           <td width="100"><%= number_to_currency order.grand_total %></td>
+          <td width="200" style="vertical-align: top;">
+          
+            <% order.order_items.each do |oi| %>
+          
+              <%= oi.item.name %> (<%= oi.quantity %>)</br>
+            <%end%>
+          </td>
         </tr>
       <% end %>
     </tbody>

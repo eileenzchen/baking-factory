@@ -1,7 +1,7 @@
 <% if current_user.role?(:customer) %>
   <%= render partial: "customer_orders" %>
 <%else%>
-  <%= render partial: "partials/index_structure", locals: {model_name: "item", 
+  <%= render partial: "partials/index_structure", locals: {model_name: "order", 
                                                           primary: "tabbed_index", 
                                                           secondary: nil,
                                                           sidebar: nil} %>

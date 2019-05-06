@@ -4,7 +4,6 @@ module AppHelpers
     # of item_ids as keys and quantities as values.  The hash is 
     # saved as a session variable that the user should have  
     # available during the course of their interactions w/ system.
-    puts "#*(!*&%*!@(*%&*!@(%*&!@(%*@!(%&"
 
     def create_cart
       session[:cart] ||= Hash.new

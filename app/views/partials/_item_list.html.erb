@@ -17,9 +17,9 @@
           
           <% if !item1.price_on_date(Date.current).nil? %>
             <% if item1.picture_url.nil?  || item1.picture_url.empty?%>
-              <td width="140"><%= link_to image_tag("img-not-found.png", :size => "130x130"), item_path(item1) %></td>
+              <td width="140" style="vertical-align: top;"><%= link_to image_tag("img-not-found.png", :size => "130x130"), item_path(item1) %></td>
             <% else %>
-              <td width="140"><div class="crop"><%= link_to image_tag(item1.picture_url, :size => "130x130"), item_path(item1) %></td></div>
+              <td width="140" style="vertical-align: top;"><div class="crop"><%= link_to image_tag(item1.picture_url, :size => "130x130"), item_path(item1) %></td></div>
             <% end %>
 
             <td style="vertical-align: top; float: left;"><%= link_to item1.name, item_path(item1), class: "align-left"  %>
@@ -31,7 +31,7 @@
     
               
 
-              <% if logged_in? && current_user.role?(:customer) %>
+              <% if logged_in? && (current_user.role?(:customer) || current_user.role?(:admin)) %>
     
                 <%= link_to(add_item_path(item1.id), class: 'btn button tiny radius') do %>
                   <% if current_page?(controller: 'orders') %>
@@ -40,7 +40,9 @@
                     Add to cart
                   <% end %>
                 <% end %>
-              <% elsif logged_in? && current_user.role?(:admin) %>
+              <% end %>
+              &nbsp;&nbsp;&nbsp;
+              <% if logged_in? && current_user.role?(:admin) %>
                 <% if item1.active %>
                   
                   <%=link_to('Make inactive', toggle_item_path(item1.id), 
@@ -61,9 +63,9 @@
           <% if item1 != item2 && !item2.price_on_date(Date.current).nil? %>
 
             <% if item2.picture_url.nil?  || item2.picture_url.empty?%>
-              <td width="140"><%= link_to image_tag("img-not-found.png", :size => "130x130"), item_path(item2) %></td>
+              <td width="140" style="vertical-align: top;"><%= link_to image_tag("img-not-found.png", :size => "130x130"), item_path(item2) %></td>
             <% else %>
-              <div class="crop"><td width="140"><%= link_to image_tag(item2.picture_url, :size => "130x130"), item_path(item2) %></td></div>
+              <div class="crop" style="vertical-align: top;"><td width="140"><%= link_to image_tag(item2.picture_url, :size => "130x130"), item_path(item2) %></td></div>
             <% end %>
 
             <td style="vertical-align: top"><%= link_to item2.name, item_path(item2), class: "align-left"  %>
@@ -73,7 +75,7 @@
               </br>
               <%= item2.units_per_item %> <%= item2_type == 'bread' ? 'loaf' : item2_type %></br></br>
             
-              <% if logged_in? && current_user.role?(:customer) %>
+              <% if logged_in? && (current_user.role?(:customer) || current_user.role?(:admin))%>
   
                 <%= link_to(add_item_path(item2.id), class: 'btn button tiny radius') do %>
                   <% if current_page?(controller: 'orders') %>
@@ -82,7 +84,9 @@
                     Add to cart
                   <% end %>
                 <% end %>
-              <% elsif logged_in? && current_user.role?(:admin) %>
+              <% end %>
+              &nbsp;&nbsp;&nbsp;
+              <% if logged_in? && current_user.role?(:admin) %>
      
                 <% if item2.active %>
                   

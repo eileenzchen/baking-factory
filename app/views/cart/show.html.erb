@@ -11,15 +11,29 @@
       
     </div>
     <% if @items_in_cart.empty? %>
-      <%= link_to(home_path, class: 'btn button tiny radius') do %>
-        Continue shopping
+      <% if current_user.role?(:customer) %>
+        <%= link_to(home_path, class: 'btn button tiny radius') do %>
+          Continue shopping
+        <% end %>
+      <% else %>
+        <%= link_to(items_path, class: 'btn button tiny radius') do %>
+          Continue shopping
+        <% end %>
       <% end %>
+
     <% else %>
 
-      <%= link_to(home_path, class: 'btn button tiny radius') do %>
-        Continue shopping
+      <% if current_user.role?(:customer) %>
+        <%= link_to(home_path, class: 'btn button tiny radius') do %>
+          Continue shopping
+        <% end %>
+      <% else %>
+        <%= link_to(items_path, class: 'btn button tiny radius') do %>
+          Continue shopping
+        <% end %>
       <% end %>
-      <div style="float: right"
+
+      <div style="float: right">
         <%= link_to(empty_cart_path, class: 'btn button tiny radius') do %>
           Empty cart
         <% end %>

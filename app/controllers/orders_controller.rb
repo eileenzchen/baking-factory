@@ -10,7 +10,6 @@ class OrdersController < ApplicationController
     if current_user.role?(:customer)
       @all_orders = current_user.customer.orders.chronological.paginate(page: params[:page]).per_page(10)
     else
-      puts "helllloooooo"
       @all_orders = Order.all.chronological
       @pending_orders = Order.not_shipped
       @past_orders = (@all_orders - @pending_orders)
@@ -60,11 +59,9 @@ class OrdersController < ApplicationController
         redirect_to @order, notice: "Thank you for ordering from the Baking Factory."
       end
     else
-      if current_user.role?(:admin)
-        render action: 'new'
-      else
         redirect_to checkout_path
-      end
+        flash[:error] = "Oops, order could not be placed. #{@order.errors.to_a.first}"
+      
 
     end
   end

@@ -10,8 +10,13 @@ class HomeController < ApplicationController
     @bread = Item.active.for_category('bread').alphabetical.paginate(:page => params[:page]).per_page(10)
     @muffins = Item.active.for_category('muffins').alphabetical.paginate(:page => params[:page]).per_page(10)
     @pastries = Item.active.for_category('pastries').alphabetical.paginate(:page => params[:page]).per_page(10)
+    @chocolate_zuke = Item.where("name LIKE ?", "%chocolate zucchini%").first
     if logged_in? && (current_user.role?(:admin) || current_user.role?(:customer))
       @num_items_in_cart = get_number_of_items
+    end
+     
+    if logged_in? && (current_user.role?(:admin) || current_user.role?(:customer))
+      @recent_order = Order.for_customer(current_user.customer.id).chronological.first
     end
     # get a list of any inactive items for sidebar
     if logged_in? && current_user.role?(:admin)
