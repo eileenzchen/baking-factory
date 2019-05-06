@@ -14,6 +14,13 @@ p {
   color: #c49a5a;
 }
 
+.crop img {
+
+  overflow: hidden;
+  position: relative;
+  object-fit: cover; /* Do not scale the image */
+
+}
 /****NAV****/
 nav {
   background-color: #ffffff;

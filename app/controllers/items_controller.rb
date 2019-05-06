@@ -8,10 +8,10 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     if @item.active?
       @item.update_attribute(:active, false)
-      flash[:notice] = "#{@item.name} made inactive"
+      flash[:notice] = "#{@item.name} was made inactive"
     else
       @item.update_attribute(:active, true)
-      flash[:notice] = "#{@item.name} made active"
+      flash[:notice] = "#{@item.name} was made active"
     end
     
     redirect_back fallback_location: home_path
@@ -90,7 +90,7 @@ class ItemsController < ApplicationController
     if @item.destroy
       redirect_to items_url, notice: "#{@item.name} was removed from the system."
     else
-      redirect_back fallback_location: home_path
+      redirect_back fallback_location: home_path, notice: "#{@item.name} cannot be removed from the system but was made inactive"
     end
   end
 
@@ -100,7 +100,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :description, :picture, :category, :units_per_item, :weight, :active)
+    params.require(:item).permit(:name, :description, :picture, :category, :units_per_item, :weight, :active, :picture)
   end
 
   def item_price_params

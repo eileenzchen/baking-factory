@@ -1,10 +1,14 @@
 class ItemPricesController < ApplicationController
   before_action :check_login
   authorize_resource
+  include AppHelpers::Cart
   
   def new
     @item_price = ItemPrice.new
     @item = Item.find(params[:item_id])
+    if logged_in? && current_user.role?(:admin) || current_user.role?(:customer)
+      @num_items_in_cart = get_number_of_items
+    end
   end
   
   def create

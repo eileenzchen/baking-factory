@@ -2,10 +2,14 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :check_login
   authorize_resource
-
+  include AppHelpers::Cart 
+  
   def index
     @all_users = User.all.alphabetical.paginate(page: params[:page]).per_page(15)
     @employees = User.employees.alphabetical.paginate(page: params[:page]).per_page(15)
+    if logged_in? && current_user.role?(:admin) || current_user.role?(:customer)
+      @num_items_in_cart = get_number_of_items
+    end
   end
 
   def new

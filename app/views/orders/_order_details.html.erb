@@ -23,7 +23,7 @@
         <b style="font-size:16px;">Order Date:</b>&nbsp;&nbsp;<%= @order.date.strftime("%m/%d/%y") %><br />
 
         <%if current_user.role?(:admin) %>
-          <b>Customer:</b><br/>
+          <b>Customer:</b>
             <%= @order.customer.proper_name %><br/>
         <% end %>
         

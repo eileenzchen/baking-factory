@@ -1,0 +1,19 @@
+<% if current_user.role?(:admin) %>
+  <h5 style="padding-left: 11px;">Addresses</h5>
+<%end%>
+<div class="row" style="padding-left:16px;">
+  <div class="col s12">
+    <ul class="tabs">
+      <li class="tab col s2"><a class="active" href="#active">Active</a></li>
+      <li class="tab col s2"><a href="#inactive">Inactive</a></li>
+    </ul>
+  </div>
+</div>
+
+  <div id="active" class="col s12">
+    <%= render :partial => "addresses/active_addresses" %>
+  </div>
+
+  <div id="inactive" class="col s12">
+    <%= render :partial => "addresses/inactive_addresses" %>
+  </div>

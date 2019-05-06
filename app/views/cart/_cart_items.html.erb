@@ -12,10 +12,10 @@
         <tr>
           <%item = order_item.item%>
           <% item_type = item.category.downcase %>
-          <% if item.picture.nil? || item.picture.empty?%>
+          <% if item.picture_url.nil? || item.picture_url.empty?%>
             <td width="130"><%= link_to image_tag("img-not-found.png", :size => "100x100"), item_path(item) %></td>
           <% else %>
-            <td width="130"><%= link_to image_tag(item.picture, :size => "100x100"), item_path(item) %></td>
+            <td width="130"><div class="crop"><%= link_to image_tag(item.picture_url, :size => "100x100"), item_path(item) %></td></div>
           <% end %>
 
           <td style="vertical-align: top" width="450"><%= link_to item.name, item_path(item), class: "align-left"  %>

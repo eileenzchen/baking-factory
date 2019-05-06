@@ -24,6 +24,9 @@ class CustomersController < ApplicationController
   def index
     @active_customers = Customer.active.alphabetical.paginate(:page => params[:page]).per_page(10)
     @inactive_customers = Customer.inactive.alphabetical.paginate(:page => params[:page]).per_page(10)
+    if logged_in? && current_user.role?(:admin) || current_user.role?(:customer)
+      @num_items_in_cart = get_number_of_items
+    end
   end
 
   def show
@@ -81,11 +84,16 @@ class CustomersController < ApplicationController
   end
 
   def destroy
-    if @customer.destroy
+    ## We don't allow destroy (will deactivate instead)
+    if @owner.destroy
+      # irrelevant now...
+      # redirect_to owners_url, notice: "Successfully removed #{@owner.proper_name} from the PATS system."
     else
+      # we still want this path with the base error message shown
       @previous_orders = @customer.orders.chronological.to_a
-      render action: 'show'
+      render action: 'show', notice: "Cannot delete customer. #{@customer.proper_name} was made inactive."
     end
+
   end
 
   private

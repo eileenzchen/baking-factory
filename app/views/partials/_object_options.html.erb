@@ -11,7 +11,7 @@
   <% end %>
   &nbsp;&nbsp;
   
-  <% if controller.respond_to?(:destroy) %>
+  <% if controller.respond_to?(:destroy) && !current_page?(customer_path(object)) %>
     <%= link_to(eval("#{model_name}_path(object)"), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{opt}"}, class: 'waves-effect waves-light btn btn-alert') do %>
         &nbsp;<%= "Delete #{opt}" %>
     <% end %>

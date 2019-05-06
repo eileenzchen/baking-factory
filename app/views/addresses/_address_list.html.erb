@@ -2,9 +2,8 @@
   <p><em>There are no <%= state %> addresses at this time.</em></p>
 <% else %>
 
-<%if current_user.role?(:admin)%>
-  <h5><%= state.capitalize %> Addresses</h5>
-<%else%>
+<%if current_user.role?(:customer)%>
+ 
   <h5>Your Addresses</h5>
 <%end%>
 <table class="table striped highlight">
