@@ -69,6 +69,7 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    chartkick (3.0.2)
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
     chronic (0.10.2)
@@ -121,6 +122,8 @@ GEM
     gherkin (5.1.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    groupdate (4.1.1)
+      activesupport (>= 4.2)
     hirb (0.7.3)
     i18n (1.5.1)
       concurrent-ruby (~> 1.0)
@@ -295,6 +298,7 @@ DEPENDENCIES
   cancancan (= 2.1.2)
   capybara (= 2.17.0)
   carrierwave (= 1.2.2)
+  chartkick
   chronic (= 0.10.2)
   coffee-rails (~> 4.2)
   cucumber (= 3.1.2)
@@ -302,6 +306,7 @@ DEPENDENCIES
   database_cleaner (= 1.7.0)
   factory_bot_rails (= 4.8.2)
   faker (= 1.8.7)
+  groupdate
   hirb (= 0.7.3)
   jbuilder (~> 2.5)
   jquery-rails (= 4.3.1)
@@ -336,4 +341,4 @@ DEPENDENCIES
   will_paginate (= 3.1.6)
 
 BUNDLED WITH
-   1.16.2
+   1.16.6

@@ -15,7 +15,10 @@
 //= require materialize-sprockets
 //= require materialize-form
 //= require best_in_place
+//= require Chart.bundle
+//= require chartkick
 //= require_tree .
+
 
 
 // @import "materialize";

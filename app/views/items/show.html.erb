@@ -1,5 +1,19 @@
+<% if logged_in? && current_user.role?(:admin) %>
 <%= render partial: "partials/structure2", locals: {model_name: "item", 
                                                          object: @item,
                                                          primary: "item_details", 
                                                          secondary: nil,
                                                          sidebar: "previous_item_prices"} %>
+<% elsif logged_in? && current_user.role?(:customer) %>
+<%= render partial: "partials/structure2", locals: {model_name: "item", 
+                                                         object: @item,
+                                                         primary: "item_details", 
+                                                         secondary: nil,
+                                                         sidebar: "similar_items"}%>
+<% else %>
+<%= render partial: "partials/structure2", locals: {model_name: "item", 
+                                                         object: @item,
+                                                         primary: "item_details", 
+                                                         secondary: nil,
+                                                         sidebar: nil}%>
+<% end %>
