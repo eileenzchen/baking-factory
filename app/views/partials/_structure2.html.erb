@@ -15,5 +15,9 @@
 </div>
 <div class="row">
   <%= render :partial => "partials/display_base_errors", locals: {object: object} %>
-  <%= render :partial => "partials/object_options", locals: {model_name: model_name, object: object} %>
+  <% if logged_in? && current_user.role?(:admin) %>
+    <%= render :partial => "partials/object_options", locals: {model_name: model_name, object: object} %>
+    
+  <%end%>
+
 </div>

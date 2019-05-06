@@ -1,7 +1,10 @@
 <div class="card">
   <div class="card-content">
-
-    <span class="card-title" style="display: inline">My Account</span>
+    <% if current_user.role?(:admin) %>
+      <span class="card-title" style="display: inline">Customer Info</span>
+    <%else%>
+      <span class="card-title" style="display: inline">My Account</span>
+    <%end%>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   
         <%= link_to edit_customer_path(@customer) do %>
@@ -23,7 +26,7 @@
         
         <% if current_user.role?(:admin)%>
           <p>
-            <b>Active</b>: <%= best_in_place @customer.active ? 'Yes' : 'No' %>
+            <b>Active</b>: <%= @customer.active ? 'Yes' : 'No' %>
           </p>
         <%end%>
         
@@ -31,9 +34,25 @@
           <em>A Baking Factory customer since <%= @customer.created_at.year %>.</em>
         </p>
         </br>
+        
+        <% if current_user.role?(:customer) %>
+          <%= link_to(addresses_path(@customer.id), class: 'btn button tiny radius') do %>
+            My addresses
+          <% end %>
+        <% end %>
+        
+        <% if current_user.role?(:admin) %>
+          <% if !@customer.active %>
+            <%=link_to('Make active', toggle_customer_path(@customer.id), 
+            method: :patch, 
+            class: " btn button tiny radius")%>
+          <% else %>
+            <%=link_to('Make inactive', toggle_customer_path(@customer.id), 
+            method: :patch, 
+            class: " btn button tiny radius")%>
+              
+          <% end %>
 
-        <%= link_to(addresses_path(@customer.id), class: 'btn button tiny radius') do %>
-          My addresses
         <% end %>
       
       </div>

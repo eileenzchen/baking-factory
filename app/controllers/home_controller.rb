@@ -26,9 +26,9 @@ class HomeController < ApplicationController
 
     #bakers
     if logged_in? && (current_user.role?(:baker) || current_user.role?(:admin))
-      @baking_list_bread = create_baking_list_for("Bread")
-      @baking_list_muffins = create_baking_list_for("Muffins")
-      @baking_list_pastries = create_baking_list_for("Pastries")
+      @baking_list_bread = create_baking_list_for("bread")
+      @baking_list_muffins = create_baking_list_for("muffins")
+      @baking_list_pastries = create_baking_list_for("pastries")
     end
   end
 
@@ -42,4 +42,19 @@ class HomeController < ApplicationController
   def contact
   end
 
+  def search
+    @query = params[:query]
+    if current_user.nil? || current_user.role?(:customer)
+      @items = Item.search(@query)
+      @total_hits = @items.size
+    elsif logged_in? && current_user.role?(:admin)
+      @items = Item.search(@query)
+      @customers = Customer.search(@query)
+      @total_hits = @items.size + @customers.size
+    end
+    if logged_in? && (current_user.role?(:admin) || current_user.role?(:customer))
+      @num_items_in_cart = get_number_of_items
+    end
+    
+  end
 end

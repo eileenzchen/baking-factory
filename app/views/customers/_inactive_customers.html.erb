@@ -18,7 +18,7 @@
           <% if logged_in? && current_user.role?(:admin) %>
             <td width="200">
              
-                <%=link_to('Make inactive', toggle_customer_path(customer.id), 
+                <%=link_to('Make active', toggle_customer_path(customer.id), 
                         method: :patch, 
                         class: " btn button tiny radius")%>
       

@@ -1,4 +1,9 @@
-<div class="row">
+<% if logged_in? && current_user.role?(:admin) %>
+  <%= render :partial => "partials/title_with_search", locals: {title: "Items"} %>
+<% else %>
+  <%= render :partial => "partials/title_with_search", locals: {title: "Our Products"} %>
+<% end %>
+<div class="row" style="padding-left:16px;">
   <div class="col s12">
     <ul class="tabs">
       <li class="tab col s2"><a class="active" href="#all">All</a></li>

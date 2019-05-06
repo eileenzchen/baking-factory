@@ -37,6 +37,7 @@ $(window).bind("load", function () {
   }
 });
 
+
 // Flash fade (Taken from PATS)
 $(function() {
   $('.alert-box').fadeIn('normal', function() {
