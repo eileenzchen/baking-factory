@@ -17,7 +17,7 @@ class Customer < ApplicationRecord
   # Scopes
   scope :alphabetical,  -> { order(:last_name).order(:first_name) }
   scope :search, ->(term) { where('first_name LIKE ? OR last_name LIKE ?', "#{term}%", "#{term}%") }
-  scope :best_customers, ->{ joins(:orders, :user).group("users.username").order("count(orders.id) DESC").select("count(orders.id)").limit(10)}
+  scope :best_customers, ->{ joins(:orders, :user).group("users.username").order("count(orders.id) DESC").limit(10)}
 
   # Validations
   validates_presence_of :last_name, :first_name

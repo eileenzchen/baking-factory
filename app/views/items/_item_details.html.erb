@@ -27,6 +27,10 @@
     </p></br>
 
     <p>
+      <b style="font-size: 18px"> Price:</b> <%= number_to_currency @item.current_price%>
+    </p></br>
+
+    <p>
       <b style="font-size: 18px"> Units:</b> <%= @item.units_per_item %> <%= @item.category == 'bread' ? 'loaf' : @item.category.downcase %>
     </p></br>
 

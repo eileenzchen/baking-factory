@@ -16,7 +16,7 @@ class OrderItemsController < ApplicationController
     redirect_back fallback_location: home_path
       
 
-    end
+    
     
   end
 
@@ -77,4 +77,4 @@ class OrderItemsController < ApplicationController
       params.require(:order_item).permit(:order_id, :item_id, :quantity, :shipped_on)
     end
 
-end
+  end

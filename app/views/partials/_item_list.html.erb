@@ -19,7 +19,7 @@
             <% if item1.picture_url.nil?  || item1.picture_url.empty?%>
               <td width="140" style="vertical-align: top;"><%= link_to image_tag("img-not-found.png", :size => "130x130"), item_path(item1) %></td>
             <% else %>
-              <td width="140" style="vertical-align: top;"><div class="crop"><%= link_to image_tag(item1.picture_url, :size => "130x130"), item_path(item1) %></td></div>
+              <td width="140" style="vertical-align: top;"><div class="crop"><%= link_to image_tag(item1.picture_url, :size => "130x130"), item_path(item1) %></div></td>
             <% end %>
 
             <td style="vertical-align: top; float: left;"><%= link_to item1.name, item_path(item1), class: "align-left"  %>
@@ -65,7 +65,7 @@
             <% if item2.picture_url.nil?  || item2.picture_url.empty?%>
               <td width="140" style="vertical-align: top;"><%= link_to image_tag("img-not-found.png", :size => "130x130"), item_path(item2) %></td>
             <% else %>
-              <div class="crop" style="vertical-align: top;"><td width="140"><%= link_to image_tag(item2.picture_url, :size => "130x130"), item_path(item2) %></td></div>
+              <td width="140"><div class="crop" style="vertical-align: top;"><%= link_to image_tag(item2.picture_url, :size => "130x130"), item_path(item2) %></div></td>
             <% end %>
 
             <td style="vertical-align: top"><%= link_to item2.name, item_path(item2), class: "align-left"  %>
