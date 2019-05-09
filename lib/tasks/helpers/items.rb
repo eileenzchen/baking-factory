@@ -6,7 +6,8 @@ module Populator
         description: "Our original bread made with stone ground flour, clover honey and a lot of love. This versatile bread is great for toast, sandwiches, formal dinners and just when you need to munch.", 
         units_per_item: 1, 
         category: "bread", 
-        weight: 1.0)
+        weight: 1.0,
+        picture: 'honey-wheat-bread.jpg')
       # prices
       hw1 = FactoryBot.create(:item_price, item: honey_wheat, price: 3.95, start_date: 24.months.ago.to_date)
       hw1.update_attribute(:start_date, 24.months.ago.to_date)
@@ -28,7 +29,8 @@ module Populator
           description: "Your family will be impressed with the soft texture and appealing swirls of cinnamon in these lovely breakfast loaves.", 
           units_per_item: 1, 
           category: "bread", 
-          weight: 1.0)
+          weight: 1.0,
+          picture: 'cinnamon-swirl-bread.jpg')
       # prices
       cs1 = FactoryBot.create(:item_price, item: cinnamon_swirl, price: 4.25, start_date: 24.months.ago.to_date)
       cs1.update_attribute(:start_date, 24.months.ago.to_date)
@@ -47,7 +49,8 @@ module Populator
           description: "A delicious bread made with white flour, dried cherries and dried apples.  This yummy bread makes great holiday gifts for friends and family!", 
           units_per_item: 1, 
           category: "bread", 
-          weight: 1.2)
+          weight: 1.2,
+          picture: 'apple-cherry-bread.jpg')
       # prices
       ac1 = FactoryBot.create(:item_price, item: apple_cherry, price: 4.95, start_date: 12.months.ago.to_date)
       ac1.update_attribute(:start_date, 12.months.ago.to_date)
@@ -63,7 +66,8 @@ module Populator
           description: "It is a white bread characterized by a pronounced sourness because the dough is allowed to ferment.  Our style of sourdough is the San Francisco variety, one of the most popular in the world.  Sourdough is popular because of its ability to combine well with seafoods and soups, such as cioppino, clam chowder, and chili.", 
           units_per_item: 1, 
           category: "bread", 
-          weight: 1.1)
+          weight: 1.1,
+          picture: 'sourdough-bread.jpg')
       # prices
       sd1 = FactoryBot.create(:item_price, item: sourdough, price: 4.25, start_date: 24.months.ago.to_date)
       sd1.update_attribute(:start_date, 24.months.ago.to_date)
@@ -82,7 +86,8 @@ module Populator
           description: "This is a Jewish egg bread that's braided for a beautiful presentation. We top ours with poppy seeds for a special touch.", 
           units_per_item: 1, 
           category: "bread", 
-          weight: 0.9)
+          weight: 0.9,
+          picture: 'challah-bread.jpg')
       # prices
       ch1 = FactoryBot.create(:item_price, item: challah, price: 4.95, start_date: 14.months.ago.to_date)
       ch1.update_attribute(:start_date, 14.months.ago.to_date)
@@ -101,7 +106,8 @@ module Populator
         description: "A dozen of our most popular muffins. We use the same recipie our grandmother did to make her award-winning blueberry muffins.", 
         units_per_item: 12, 
         category: "muffins", 
-        weight: 1.0)
+        weight: 1.0,
+        pictutre: 'blueberry-muffins.jpg')
       # prices
       bl1 = FactoryBot.create(:item_price, item: blueberry, price: 7.95, start_date: 12.months.ago.to_date)
       bl1.update_attribute(:start_date, 12.months.ago.to_date)
@@ -117,7 +123,8 @@ module Populator
         description: "A tasty recipie our mom used to make to get us to eat our veggies as often as possible with the least complaining possible. Your kids will love them too!", 
         units_per_item: 12, 
         category: "muffins", 
-        weight: 1.1)
+        weight: 1.1,
+        picture: 'Chocolate-Zucchini-Muffins.jpg')
       # prices
       cz1 = FactoryBot.create(:item_price, item: chocolate_zuke, price: 7.95, start_date: 12.months.ago.to_date)
       cz1.update_attribute(:start_date, 12.months.ago.to_date)
@@ -133,7 +140,8 @@ module Populator
         description: "Another recipie from mom to promote veggies in every meal.  These muffins contain fresh apple bits and shredded carrots.", 
         units_per_item: 12, 
         category: "muffins", 
-        weight: 1.1)
+        weight: 1.1,
+        picture: 'apple-carrot-muffins.jpg')
       # prices
       ca1 = FactoryBot.create(:item_price, item: apple_carrot, price: 7.95, start_date: 12.months.ago.to_date)
       ca1.update_attribute(:start_date, 12.months.ago.to_date)
@@ -152,7 +160,8 @@ module Populator
         description: "A staple of French cuisine, our crossiants are light, fluffy and buttery.", 
         units_per_item: 4, 
         category: "pastries", 
-        weight: 1.0)
+        weight: 1.0,
+        picture: 'croissants.jpg')
       # price
       cr1 = FactoryBot.create(:item_price, item: croissants, price: 9.50, start_date: 6.months.ago.to_date)      
       cr1.update_attribute(:start_date, 6.months.ago.to_date)
