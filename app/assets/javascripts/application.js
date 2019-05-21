@@ -11,7 +11,7 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery-ujs
+//= require rails_ujs
 //= require materialize-sprockets
 //= require materialize-form
 //= require vue
