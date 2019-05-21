@@ -11,9 +11,10 @@
 // about supported directives.
 //
 //= require jquery
-//= require rails-ujs
+//= require jquery-ujs
 //= require materialize-sprockets
 //= require materialize-form
+//= require vue
 //= require best_in_place
 //= require Chart.bundle
 //= require highcharts
