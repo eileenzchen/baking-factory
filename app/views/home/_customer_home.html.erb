@@ -32,10 +32,12 @@
           Your kids will love them too!
         </p>
         </br>
-        <%= link_to(add_item_path(@chocolate_zuke.id), class: 'btn button tiny radius') do %>
-            
-          Add to cart
-    
+        <% if !@chocolate_zuke.nil? %>
+          <%= link_to(add_item_path(@chocolate_zuke.id), class: 'btn button tiny radius') do %>
+              
+            Add to cart
+      
+          <% end %>
         <% end %>
       </div>
     </div>
