@@ -11,8 +11,9 @@ class SessionsController < ApplicationController
       if logged_in? && current_user.role?(:customer) || current_user.role?(:admin)
         create_cart
       end
-      flash.now[:notice] = "Logged in!"
+      flash[:notice] = "Logged in!"
       redirect_to home_path
+      
       
     else
       flash.now.alert = "Username and/or password is invalid"
@@ -23,8 +24,9 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     destroy_cart
-    flash.now[:notice] = "Logged out!"
+    flash[:notice] = "Logged out!"
     redirect_to home_path
+    
     
   end
 
