@@ -7,7 +7,8 @@ module Populator
         units_per_item: 1, 
         category: "bread", 
         weight: 1.0,
-        picture: 'honey-wheat-bread.jpg')
+        picture: Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, 'app/assets/images/honey-wheat-bread.jpg'))))
+      puts honey_wheat.inspect
       # prices
       hw1 = FactoryBot.create(:item_price, item: honey_wheat, price: 3.95, start_date: 24.months.ago.to_date)
       hw1.update_attribute(:start_date, 24.months.ago.to_date)
@@ -30,7 +31,7 @@ module Populator
           units_per_item: 1, 
           category: "bread", 
           weight: 1.0,
-          picture: 'cinnamon-swirl-bread.jpg')
+          picture: Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, 'app/assets/images/cinnamon-swirl-bread.jpg'))))
       # prices
       cs1 = FactoryBot.create(:item_price, item: cinnamon_swirl, price: 4.25, start_date: 24.months.ago.to_date)
       cs1.update_attribute(:start_date, 24.months.ago.to_date)
@@ -50,7 +51,7 @@ module Populator
           units_per_item: 1, 
           category: "bread", 
           weight: 1.2,
-          picture: 'apple-cherry-bread.jpg')
+          picture: Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, 'app/assets/images/apple-cherry-bread.jpg'))))
       # prices
       ac1 = FactoryBot.create(:item_price, item: apple_cherry, price: 4.95, start_date: 12.months.ago.to_date)
       ac1.update_attribute(:start_date, 12.months.ago.to_date)
@@ -67,7 +68,7 @@ module Populator
           units_per_item: 1, 
           category: "bread", 
           weight: 1.1,
-          picture: 'sourdough-bread.jpg')
+          picture: Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, 'app/assets/images/sourdough-bread.jpg'))))
       # prices
       sd1 = FactoryBot.create(:item_price, item: sourdough, price: 4.25, start_date: 24.months.ago.to_date)
       sd1.update_attribute(:start_date, 24.months.ago.to_date)
@@ -87,7 +88,7 @@ module Populator
           units_per_item: 1, 
           category: "bread", 
           weight: 0.9,
-          picture: 'challah-bread.jpg')
+          picture: Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, 'app/assets/images/challah-bread.jpg'))))
       # prices
       ch1 = FactoryBot.create(:item_price, item: challah, price: 4.95, start_date: 14.months.ago.to_date)
       ch1.update_attribute(:start_date, 14.months.ago.to_date)
@@ -107,7 +108,7 @@ module Populator
         units_per_item: 12, 
         category: "muffins", 
         weight: 1.0,
-        pictutre: 'blueberry-muffins.jpg')
+        picture: Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, 'app/assets/images/blueberry-muffins.jpg'))))
       # prices
       bl1 = FactoryBot.create(:item_price, item: blueberry, price: 7.95, start_date: 12.months.ago.to_date)
       bl1.update_attribute(:start_date, 12.months.ago.to_date)
@@ -124,7 +125,7 @@ module Populator
         units_per_item: 12, 
         category: "muffins", 
         weight: 1.1,
-        picture: 'Chocolate-Zucchini-Muffins.jpg')
+        picture: Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, 'app/assets/images/Chocolate-Zucchini-Muffins.jpg'))))
       # prices
       cz1 = FactoryBot.create(:item_price, item: chocolate_zuke, price: 7.95, start_date: 12.months.ago.to_date)
       cz1.update_attribute(:start_date, 12.months.ago.to_date)
@@ -141,7 +142,7 @@ module Populator
         units_per_item: 12, 
         category: "muffins", 
         weight: 1.1,
-        picture: 'apple-carrot-muffins.jpg')
+        picture: Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, 'app/assets/images/apple-carrot-muffins.jpg'))))
       # prices
       ca1 = FactoryBot.create(:item_price, item: apple_carrot, price: 7.95, start_date: 12.months.ago.to_date)
       ca1.update_attribute(:start_date, 12.months.ago.to_date)
@@ -161,7 +162,7 @@ module Populator
         units_per_item: 4, 
         category: "pastries", 
         weight: 1.0,
-        picture: 'croissants.jpg')
+        picture: Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, 'app/assets/images/croissants.jpg'))))
       # price
       cr1 = FactoryBot.create(:item_price, item: croissants, price: 9.50, start_date: 6.months.ago.to_date)      
       cr1.update_attribute(:start_date, 6.months.ago.to_date)

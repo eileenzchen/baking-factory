@@ -7,5 +7,6 @@ FactoryBot.define do
     units_per_item 1
     weight 1.0
     active true
+    picture { Rack::Test::UploadedFile.new(Rails.root.join('app/assets/images/honey-wheat-bread.jpg'), 'image/jpeg') }
   end
 end
