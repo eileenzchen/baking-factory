@@ -52,6 +52,7 @@ gem 'vuejs-rails', '2.5.13'
 gem 'best_in_place', '~> 3.0.1'
 gem 'chartkick'
 gem 'groupdate'
+gem "rack-timeout"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
