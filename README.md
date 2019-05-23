@@ -17,5 +17,4 @@ All users in the system have a password of 'secret'. In terms of employee-type u
 
 #### Built with
 [Ruby on Rails](https://rubyonrails.org/) - web framework 
-
 [Materialize](https://materializecss.com/) - CSS framework
