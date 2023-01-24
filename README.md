@@ -13,6 +13,8 @@ To set this up, clone this repository, run the `bundle install` command to ensur
 - over 600 orders
 - a menu of 5 types of breads, 3 varieties of muffins and 1 type of pastry
 
+Run `rails server` to start the web server and then go to `http://localhost:3000`.
+
 All users in the system have a password of 'secret'. In terms of employee-type users there are two admins -- Alex (username: 'alex') and Mark (username: 'mark') -- and a shipper (username: 'shipper') and a baker (username: 'baker'). All customers have a username which is 'user' with a sequential set of numbers concatentated. (user1 - user120 should exist for you to log in as and experiment.) Feel free to create your own accounts as well.  
 
 #### Built with
