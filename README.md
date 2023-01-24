@@ -2,7 +2,7 @@
 ---
 This is my solution to a bakery web app for 67-272 Application Design and Development. Requirements for the project can be found on the [67-272 course site](http://67272.cmuis.net/projects). Everything was designed and implemented by me.
 
-**The web app can be found on Heroku [here](https://calm-sea-19596.herokuapp.com).** 
+**The web app was deployed on Heroku [here](https://calm-sea-19596.herokuapp.com), but is not currently functioning due to recent Heroku policy changes for free dynos.** 
 
 ### Set up
 
